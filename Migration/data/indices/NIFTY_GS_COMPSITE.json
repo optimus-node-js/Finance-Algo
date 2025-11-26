@@ -1,0 +1,63 @@
+{
+    "name": "NIFTY GS COMPSITE",
+    "data": [
+        {
+            "priority": 1,
+            "symbol": "NIFTY GS COMPSITE",
+            "identifier": "NIFTY GS COMPSITE",
+            "open": 3047.73,
+            "dayHigh": 3053.24,
+            "dayLow": 3047.72,
+            "lastPrice": 3052.61,
+            "previousClose": 3047.17,
+            "change": 5.440000000000055,
+            "pChange": 0.17,
+            "ffmc": 0,
+            "yearHigh": 0,
+            "yearLow": 0,
+            "totalTradedVolume": 0,
+            "stockIndClosePrice": 0,
+            "totalTradedValue": 0,
+            "nearWKH": null,
+            "nearWKL": null,
+            "perChange365d": 8,
+            "perChange30d": 0.45,
+            "date365dAgo": "22-Nov-2024",
+            "date30dAgo": "24-Oct-2025"
+        }
+    ],
+    "metadata": {
+        "indexName": "NIFTY GS COMPSITE",
+        "open": 3047.73,
+        "high": 3053.24,
+        "low": 3047.72,
+        "previousClose": 3047.17,
+        "last": 3052.61,
+        "percChange": 0.17,
+        "change": 5.440000000000055,
+        "timeVal": "25-Nov-2025 21:00:30",
+        "yearHigh": 0,
+        "yearLow": 0,
+        "indicativeClose": 0,
+        "perChange365d": 8,
+        "perChange30d": 0.45,
+        "date365dAgo": "22-Nov-2024",
+        "date30dAgo": "24-Oct-2025",
+        "chartTodayPath": "https://nsearchives.nseindia.com/today/NIFTY-GS-COMPSITE.svg",
+        "chart30dPath": "https://nsearchives.nseindia.com/30d/NIFTY-GS-COMPSITE.svg",
+        "chart365dPath": "https://nsearchives.nseindia.com/365d/NIFTY-GS-COMPSITE.svg",
+        "totalTradedVolume": 0,
+        "totalTradedValue": 0,
+        "ffmc_sum": 0
+    },
+    "marketStatus": {
+        "market": "Capital Market",
+        "marketStatus": "Closed",
+        "tradeDate": "25-Nov-2025 15:30",
+        "index": "NIFTY 50",
+        "last": 25884.8,
+        "variation": -74.70000000000073,
+        "percentChange": -0.29,
+        "marketStatusMessage": "Normal Market is Closed"
+    }
+}

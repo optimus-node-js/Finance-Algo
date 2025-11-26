@@ -1,0 +1,63 @@
+{
+    "name": "NIFTY GS 15YRPLUS",
+    "data": [
+        {
+            "priority": 1,
+            "symbol": "NIFTY GS 15YRPLUS",
+            "identifier": "NIFTY GS 15YRPLUS",
+            "open": 3461.95,
+            "dayHigh": 3468.69,
+            "dayLow": 3461.94,
+            "lastPrice": 3467.6,
+            "previousClose": 3461.26,
+            "change": 6.339999999999691,
+            "pChange": 0.18,
+            "ffmc": 0,
+            "yearHigh": 0,
+            "yearLow": 0,
+            "totalTradedVolume": 0,
+            "stockIndClosePrice": 0,
+            "totalTradedValue": 0,
+            "nearWKH": null,
+            "nearWKL": null,
+            "perChange365d": 3.8,
+            "perChange30d": -0.55,
+            "date365dAgo": "22-Nov-2024",
+            "date30dAgo": "24-Oct-2025"
+        }
+    ],
+    "metadata": {
+        "indexName": "NIFTY GS 15YRPLUS",
+        "open": 3461.95,
+        "high": 3468.69,
+        "low": 3461.94,
+        "previousClose": 3461.26,
+        "last": 3467.6,
+        "percChange": 0.18,
+        "change": 6.339999999999691,
+        "timeVal": "25-Nov-2025 21:00:30",
+        "yearHigh": 0,
+        "yearLow": 0,
+        "indicativeClose": 0,
+        "perChange365d": 3.8,
+        "perChange30d": -0.55,
+        "date365dAgo": "22-Nov-2024",
+        "date30dAgo": "24-Oct-2025",
+        "chartTodayPath": "https://nsearchives.nseindia.com/today/NIFTY-GS-15YRPLUS.svg",
+        "chart30dPath": "https://nsearchives.nseindia.com/30d/NIFTY-GS-15YRPLUS.svg",
+        "chart365dPath": "https://nsearchives.nseindia.com/365d/NIFTY-GS-15YRPLUS.svg",
+        "totalTradedVolume": 0,
+        "totalTradedValue": 0,
+        "ffmc_sum": 0
+    },
+    "marketStatus": {
+        "market": "Capital Market",
+        "marketStatus": "Closed",
+        "tradeDate": "25-Nov-2025 15:30",
+        "index": "NIFTY 50",
+        "last": 25884.8,
+        "variation": -74.70000000000073,
+        "percentChange": -0.29,
+        "marketStatusMessage": "Normal Market is Closed"
+    }
+}

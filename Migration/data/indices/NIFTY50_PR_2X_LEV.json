@@ -1,0 +1,63 @@
+{
+    "name": "NIFTY50 PR 2X LEV",
+    "data": [
+        {
+            "priority": 1,
+            "symbol": "NIFTY50 PR 2X LEV",
+            "identifier": "NIFTY50 PR 2X LEV",
+            "open": 14637.85,
+            "dayHigh": 14675.65,
+            "dayLow": 14480.3,
+            "lastPrice": 14509.95,
+            "previousClose": 14596.15,
+            "change": -86.19999999999891,
+            "pChange": -0.59,
+            "ffmc": 0,
+            "yearHigh": 14929.45,
+            "yearLow": 10678.25,
+            "totalTradedVolume": 0,
+            "stockIndClosePrice": 0,
+            "totalTradedValue": 0,
+            "nearWKH": 2.809882480600424,
+            "nearWKL": -35.88322056516752,
+            "perChange365d": 8.94,
+            "perChange30d": 0.18,
+            "date365dAgo": "22-Nov-2024",
+            "date30dAgo": "24-Oct-2025"
+        }
+    ],
+    "metadata": {
+        "indexName": "NIFTY50 PR 2X LEV",
+        "open": 14637.85,
+        "high": 14675.65,
+        "low": 14480.3,
+        "previousClose": 14596.15,
+        "last": 14509.95,
+        "percChange": -0.59,
+        "change": -86.19999999999891,
+        "timeVal": "25-Nov-2025 21:00:30",
+        "yearHigh": 14929.45,
+        "yearLow": 10678.25,
+        "indicativeClose": 0,
+        "perChange365d": 8.94,
+        "perChange30d": 0.18,
+        "date365dAgo": "22-Nov-2024",
+        "date30dAgo": "24-Oct-2025",
+        "chartTodayPath": "https://nsearchives.nseindia.com/today/NIFTY50-PR-2X-LEV.svg",
+        "chart30dPath": "https://nsearchives.nseindia.com/30d/NIFTY50-PR-2X-LEV.svg",
+        "chart365dPath": "https://nsearchives.nseindia.com/365d/NIFTY50-PR-2X-LEV.svg",
+        "totalTradedVolume": 0,
+        "totalTradedValue": 0,
+        "ffmc_sum": 0
+    },
+    "marketStatus": {
+        "market": "Capital Market",
+        "marketStatus": "Closed",
+        "tradeDate": "25-Nov-2025 15:30",
+        "index": "NIFTY 50",
+        "last": 25884.8,
+        "variation": -74.70000000000073,
+        "percentChange": -0.29,
+        "marketStatusMessage": "Normal Market is Closed"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "name": "finance-migration-server",
+    "version": "1.0.0",
+    "description": "FastAPI Migration Server",
+    "scripts": {
+        "dev": "python -m uvicorn fastapi_app:app --reload",
+        "setup": "pip install uvicorn fastapi"
+    }
+}

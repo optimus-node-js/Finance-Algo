@@ -1,0 +1,63 @@
+{
+    "name": "BHARATBOND-APR30",
+    "data": [
+        {
+            "priority": 1,
+            "symbol": "BHARATBOND-APR30",
+            "identifier": "BHARATBOND-APR30",
+            "open": 1566.19,
+            "dayHigh": 1566.2,
+            "dayLow": 1565.83,
+            "lastPrice": 1565.83,
+            "previousClose": 1565.89,
+            "change": -0.060000000000172804,
+            "pChange": 0,
+            "ffmc": 0,
+            "yearHigh": 0,
+            "yearLow": 0,
+            "totalTradedVolume": 0,
+            "stockIndClosePrice": 0,
+            "totalTradedValue": 0,
+            "nearWKH": null,
+            "nearWKL": null,
+            "perChange365d": 8.72,
+            "perChange30d": 0.54,
+            "date365dAgo": "22-Nov-2024",
+            "date30dAgo": "24-Oct-2025"
+        }
+    ],
+    "metadata": {
+        "indexName": "BHARATBOND-APR30",
+        "open": 1566.19,
+        "high": 1566.2,
+        "low": 1565.83,
+        "previousClose": 1565.89,
+        "last": 1565.83,
+        "percChange": 0,
+        "change": -0.060000000000172804,
+        "timeVal": "25-Nov-2025 21:00:30",
+        "yearHigh": 0,
+        "yearLow": 0,
+        "indicativeClose": 0,
+        "perChange365d": 8.72,
+        "perChange30d": 0.54,
+        "date365dAgo": "22-Nov-2024",
+        "date30dAgo": "24-Oct-2025",
+        "chartTodayPath": "https://nsearchives.nseindia.com/today/BHARATBOND-APR30.svg",
+        "chart30dPath": "https://nsearchives.nseindia.com/30d/BHARATBOND-APR30.svg",
+        "chart365dPath": "https://nsearchives.nseindia.com/365d/BHARATBOND-APR30.svg",
+        "totalTradedVolume": 0,
+        "totalTradedValue": 0,
+        "ffmc_sum": 0
+    },
+    "marketStatus": {
+        "market": "Capital Market",
+        "marketStatus": "Closed",
+        "tradeDate": "25-Nov-2025 15:30",
+        "index": "NIFTY 50",
+        "last": 25884.8,
+        "variation": -74.70000000000073,
+        "percentChange": -0.29,
+        "marketStatusMessage": "Normal Market is Closed"
+    }
+}

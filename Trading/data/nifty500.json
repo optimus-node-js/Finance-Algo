@@ -1,0 +1,3002 @@
+[
+    {
+        "company_name": "360 ONE WAM Ltd",
+        "token": "13061",
+        "symbol": "360ONE-EQ",
+        "clean_symbol": "360ONE"
+    },
+    {
+        "company_name": "3M India Ltd",
+        "token": "474",
+        "symbol": "3MINDIA-EQ",
+        "clean_symbol": "3MINDIA"
+    },
+    {
+        "company_name": "AAVAS Financiers Ltd",
+        "token": "5385",
+        "symbol": "AAVAS-EQ",
+        "clean_symbol": "AAVAS"
+    },
+    {
+        "company_name": "ABB India Ltd",
+        "token": "13",
+        "symbol": "ABB-EQ",
+        "clean_symbol": "ABB"
+    },
+    {
+        "company_name": "ACC Ltd",
+        "token": "22",
+        "symbol": "ACC-EQ",
+        "clean_symbol": "ACC"
+    },
+    {
+        "company_name": "ACME Solar Holdings Ltd",
+        "token": "27061",
+        "symbol": "ACMESOLAR-EQ",
+        "clean_symbol": "ACMESOLAR"
+    },
+    {
+        "company_name": "AIA Engineering Ltd",
+        "token": "13086",
+        "symbol": "AIAENG-EQ",
+        "clean_symbol": "AIAENG"
+    },
+    {
+        "company_name": "APL Apollo Tubes Ltd",
+        "token": "25780",
+        "symbol": "APLAPOLLO-EQ",
+        "clean_symbol": "APLAPOLLO"
+    },
+    {
+        "company_name": "AU Small Finance Bank Ltd",
+        "token": "21238",
+        "symbol": "AUBANK-EQ",
+        "clean_symbol": "AUBANK"
+    },
+    {
+        "company_name": "AWL Agri Business Ltd",
+        "token": "8110",
+        "symbol": "AWL-EQ",
+        "clean_symbol": "AWL"
+    },
+    {
+        "company_name": "Aadhar Housing Finance Ltd",
+        "token": "23729",
+        "symbol": "AADHARHFC-EQ",
+        "clean_symbol": "AADHARHFC"
+    },
+    {
+        "company_name": "Aarti Industries Ltd",
+        "token": "7",
+        "symbol": "AARTIIND-EQ",
+        "clean_symbol": "AARTIIND"
+    },
+    {
+        "company_name": "Abbott India Ltd",
+        "token": "17903",
+        "symbol": "ABBOTINDIA-EQ",
+        "clean_symbol": "ABBOTINDIA"
+    },
+    {
+        "company_name": "Action Construction Equipment Ltd",
+        "token": "13587",
+        "symbol": "ACE-EQ",
+        "clean_symbol": "ACE"
+    },
+    {
+        "company_name": "Adani Energy Solutions Ltd",
+        "token": "10217",
+        "symbol": "ADANIENSOL-EQ",
+        "clean_symbol": "ADANIENSOL"
+    },
+    {
+        "company_name": "Adani Enterprises Ltd",
+        "token": "25",
+        "symbol": "ADANIENT-EQ",
+        "clean_symbol": "ADANIENT"
+    },
+    {
+        "company_name": "Adani Green Energy Ltd",
+        "token": "3563",
+        "symbol": "ADANIGREEN-EQ",
+        "clean_symbol": "ADANIGREEN"
+    },
+    {
+        "company_name": "Adani Ports & Special Economic Zone Ltd",
+        "token": "15083",
+        "symbol": "ADANIPORTS-EQ",
+        "clean_symbol": "ADANIPORTS"
+    },
+    {
+        "company_name": "Adani Power Ltd",
+        "token": "17388",
+        "symbol": "ADANIPOWER-EQ",
+        "clean_symbol": "ADANIPOWER"
+    },
+    {
+        "company_name": "Adani Total Gas Ltd",
+        "token": "6066",
+        "symbol": "ATGL-EQ",
+        "clean_symbol": "ATGL"
+    },
+    {
+        "company_name": "Aditya Birla Capital Ltd",
+        "token": "21614",
+        "symbol": "ABCAPITAL-EQ",
+        "clean_symbol": "ABCAPITAL"
+    },
+    {
+        "company_name": "Aditya Birla Fashion & Retail Ltd",
+        "token": "8003",
+        "symbol": "SILVER-EQ",
+        "clean_symbol": "SILVER"
+    },
+    {
+        "company_name": "Aditya Birla Lifestyle Brands Ltd",
+        "token": "8003",
+        "symbol": "SILVER-EQ",
+        "clean_symbol": "SILVER"
+    },
+    {
+        "company_name": "Aditya Birla Real Estate Ltd",
+        "token": "8003",
+        "symbol": "SILVER-EQ",
+        "clean_symbol": "SILVER"
+    },
+    {
+        "company_name": "Aditya Birla Sun Life AMC Ltd",
+        "token": "8003",
+        "symbol": "SILVER-EQ",
+        "clean_symbol": "SILVER"
+    },
+    {
+        "company_name": "Aegis Logistics Ltd",
+        "token": "40",
+        "symbol": "AEGISLOG-EQ",
+        "clean_symbol": "AEGISLOG"
+    },
+    {
+        "company_name": "Aegis Vopak Terminals Ltd",
+        "token": "757336",
+        "symbol": "AEGISVOPAK-EQ",
+        "clean_symbol": "AEGISVOPAK"
+    },
+    {
+        "company_name": "Afcons Infrastructure Ltd",
+        "token": "25977",
+        "symbol": "AFCONS-EQ",
+        "clean_symbol": "AFCONS"
+    },
+    {
+        "company_name": "Affle 3i Ltd",
+        "token": "11343",
+        "symbol": "AFFLE-EQ",
+        "clean_symbol": "AFFLE"
+    },
+    {
+        "company_name": "Ajanta Pharma Ltd",
+        "token": "8124",
+        "symbol": "AJANTPHARM-EQ",
+        "clean_symbol": "AJANTPHARM"
+    },
+    {
+        "company_name": "Akums Drugs & Pharmaceuticals Ltd",
+        "token": "24715",
+        "symbol": "AKUMS-EQ",
+        "clean_symbol": "AKUMS"
+    },
+    {
+        "company_name": "Akzo Nobel India Ltd",
+        "token": "1467",
+        "symbol": "AKZOINDIA-EQ",
+        "clean_symbol": "AKZOINDIA"
+    },
+    {
+        "company_name": "Alembic Pharmaceuticals Ltd",
+        "token": "79",
+        "symbol": "ALEMBICLTD-EQ",
+        "clean_symbol": "ALEMBICLTD"
+    },
+    {
+        "company_name": "Alkem Laboratories Ltd",
+        "token": "11703",
+        "symbol": "ALKEM-EQ",
+        "clean_symbol": "ALKEM"
+    },
+    {
+        "company_name": "Alkyl Amines Chemicals Ltd",
+        "token": "4487",
+        "symbol": "ALKYLAMINE-EQ",
+        "clean_symbol": "ALKYLAMINE"
+    },
+    {
+        "company_name": "Alok Industries Ltd",
+        "token": "17675",
+        "symbol": "ALOKINDS-EQ",
+        "clean_symbol": "ALOKINDS"
+    },
+    {
+        "company_name": "Amara Raja Energy & Mobility Ltd",
+        "token": "100",
+        "symbol": "ARE&M-EQ",
+        "clean_symbol": "ARE&M"
+    },
+    {
+        "company_name": "Amber Enterprises India Ltd",
+        "token": "1185",
+        "symbol": "AMBER-EQ",
+        "clean_symbol": "AMBER"
+    },
+    {
+        "company_name": "Ambuja Cements Ltd",
+        "token": "1270",
+        "symbol": "AMBUJACEM-EQ",
+        "clean_symbol": "AMBUJACEM"
+    },
+    {
+        "company_name": "Anand Rathi Wealth Ltd",
+        "token": "7145",
+        "symbol": "ANANDRATHI-EQ",
+        "clean_symbol": "ANANDRATHI"
+    },
+    {
+        "company_name": "Anant Raj Ltd",
+        "token": "13620",
+        "symbol": "ANANTRAJ-EQ",
+        "clean_symbol": "ANANTRAJ"
+    },
+    {
+        "company_name": "Angel One Ltd",
+        "token": "324",
+        "symbol": "ANGELONE-EQ",
+        "clean_symbol": "ANGELONE"
+    },
+    {
+        "company_name": "Apar Industries Ltd",
+        "token": "11491",
+        "symbol": "APARINDS-EQ",
+        "clean_symbol": "APARINDS"
+    },
+    {
+        "company_name": "Apollo Hospitals Enterprise Ltd",
+        "token": "157",
+        "symbol": "APOLLOHOSP-EQ",
+        "clean_symbol": "APOLLOHOSP"
+    },
+    {
+        "company_name": "Apollo Tyres Ltd",
+        "token": "163",
+        "symbol": "APOLLOTYRE-EQ",
+        "clean_symbol": "APOLLOTYRE"
+    },
+    {
+        "company_name": "Aptus Value Housing Finance India Ltd",
+        "token": "5435",
+        "symbol": "APTUS-EQ",
+        "clean_symbol": "APTUS"
+    },
+    {
+        "company_name": "Asahi India Glass Ltd",
+        "token": "5378",
+        "symbol": "ASAHIINDIA-EQ",
+        "clean_symbol": "ASAHIINDIA"
+    },
+    {
+        "company_name": "Ashok Leyland Ltd",
+        "token": "212",
+        "symbol": "ASHOKLEY-EQ",
+        "clean_symbol": "ASHOKLEY"
+    },
+    {
+        "company_name": "Asian Paints Ltd",
+        "token": "236",
+        "symbol": "ASIANPAINT-EQ",
+        "clean_symbol": "ASIANPAINT"
+    },
+    {
+        "company_name": "Aster DM Healthcare Ltd",
+        "token": "1508",
+        "symbol": "ASTERDM-EQ",
+        "clean_symbol": "ASTERDM"
+    },
+    {
+        "company_name": "Astral Ltd",
+        "token": "14418",
+        "symbol": "ASTRAL-EQ",
+        "clean_symbol": "ASTRAL"
+    },
+    {
+        "company_name": "Astrazeneca Pharma India Ltd",
+        "token": "5610",
+        "symbol": "ASTRAZEN-EQ",
+        "clean_symbol": "ASTRAZEN"
+    },
+    {
+        "company_name": "Ather Energy Ltd",
+        "token": "757645",
+        "symbol": "ATHERENERG-EQ",
+        "clean_symbol": "ATHERENERG"
+    },
+    {
+        "company_name": "Atul Ltd",
+        "token": "263",
+        "symbol": "ATUL-EQ",
+        "clean_symbol": "ATUL"
+    },
+    {
+        "company_name": "Aurobindo Pharma Ltd",
+        "token": "275",
+        "symbol": "AUROPHARMA-EQ",
+        "clean_symbol": "AUROPHARMA"
+    },
+    {
+        "company_name": "Authum Investment & Infrastructure Ltd",
+        "token": "23553",
+        "symbol": "AIIL-EQ",
+        "clean_symbol": "AIIL"
+    },
+    {
+        "company_name": "Avenue Supermarts Ltd",
+        "token": "19913",
+        "symbol": "DMART-EQ",
+        "clean_symbol": "DMART"
+    },
+    {
+        "company_name": "Axis Bank Ltd",
+        "token": "5900",
+        "symbol": "AXISBANK-EQ",
+        "clean_symbol": "AXISBANK"
+    },
+    {
+        "company_name": "BASF India Ltd",
+        "token": "368",
+        "symbol": "BASF-EQ",
+        "clean_symbol": "BASF"
+    },
+    {
+        "company_name": "BEML Ltd",
+        "token": "395",
+        "symbol": "BEML-EQ",
+        "clean_symbol": "BEML"
+    },
+    {
+        "company_name": "BLS International Services Ltd",
+        "token": "17279",
+        "symbol": "BLS-EQ",
+        "clean_symbol": "BLS"
+    },
+    {
+        "company_name": "BSE Ltd",
+        "token": "19585",
+        "symbol": "BSE-EQ",
+        "clean_symbol": "BSE"
+    },
+    {
+        "company_name": "Bajaj Auto Ltd",
+        "token": "16669",
+        "symbol": "BAJAJ-AUTO-EQ",
+        "clean_symbol": "BAJAJ-AUTO"
+    },
+    {
+        "company_name": "Bajaj Finance Ltd",
+        "token": "317",
+        "symbol": "BAJFINANCE-EQ",
+        "clean_symbol": "BAJFINANCE"
+    },
+    {
+        "company_name": "Bajaj Finserv Ltd",
+        "token": "16675",
+        "symbol": "BAJAJFINSV-EQ",
+        "clean_symbol": "BAJAJFINSV"
+    },
+    {
+        "company_name": "Bajaj Holdings & Investment Ltd",
+        "token": "305",
+        "symbol": "BAJAJHLDNG-EQ",
+        "clean_symbol": "BAJAJHLDNG"
+    },
+    {
+        "company_name": "Bajaj Housing Finance Ltd",
+        "token": "25270",
+        "symbol": "BAJAJHFL-EQ",
+        "clean_symbol": "BAJAJHFL"
+    },
+    {
+        "company_name": "Balkrishna Industries Ltd",
+        "token": "10181",
+        "symbol": "BALKRISHNA-EQ",
+        "clean_symbol": "BALKRISHNA"
+    },
+    {
+        "company_name": "Balrampur Chini Mills Ltd",
+        "token": "341",
+        "symbol": "BALRAMCHIN-EQ",
+        "clean_symbol": "BALRAMCHIN"
+    },
+    {
+        "company_name": "Bandhan Bank Ltd",
+        "token": "2263",
+        "symbol": "BANDHANBNK-EQ",
+        "clean_symbol": "BANDHANBNK"
+    },
+    {
+        "company_name": "Bank of Baroda",
+        "token": "4668",
+        "symbol": "BANKBARODA-EQ",
+        "clean_symbol": "BANKBARODA"
+    },
+    {
+        "company_name": "Bank of India",
+        "token": "4745",
+        "symbol": "BANKINDIA-EQ",
+        "clean_symbol": "BANKINDIA"
+    },
+    {
+        "company_name": "Bank of Maharashtra",
+        "token": "11377",
+        "symbol": "MAHABANK-EQ",
+        "clean_symbol": "MAHABANK"
+    },
+    {
+        "company_name": "Bata India Ltd",
+        "token": "371",
+        "symbol": "BATAINDIA-EQ",
+        "clean_symbol": "BATAINDIA"
+    },
+    {
+        "company_name": "Bayer CropScience Ltd",
+        "token": "17927",
+        "symbol": "BAYERCROP-EQ",
+        "clean_symbol": "BAYERCROP"
+    },
+    {
+        "company_name": "Berger Paints India Ltd",
+        "token": "404",
+        "symbol": "BERGEPAINT-EQ",
+        "clean_symbol": "BERGEPAINT"
+    },
+    {
+        "company_name": "Bharat Dynamics Ltd",
+        "token": "2144",
+        "symbol": "BDL-EQ",
+        "clean_symbol": "BDL"
+    },
+    {
+        "company_name": "Bharat Electronics Ltd",
+        "token": "383",
+        "symbol": "BEL-EQ",
+        "clean_symbol": "BEL"
+    },
+    {
+        "company_name": "Bharat Forge Ltd",
+        "token": "422",
+        "symbol": "BHARATFORG-EQ",
+        "clean_symbol": "BHARATFORG"
+    },
+    {
+        "company_name": "Bharat Heavy Electricals Ltd",
+        "token": "438",
+        "symbol": "BHEL-EQ",
+        "clean_symbol": "BHEL"
+    },
+    {
+        "company_name": "Bharat Petroleum Corporation Ltd",
+        "token": "526",
+        "symbol": "BPCL-EQ",
+        "clean_symbol": "BPCL"
+    },
+    {
+        "company_name": "Bharti Airtel Ltd",
+        "token": "10604",
+        "symbol": "BHARTIARTL-EQ",
+        "clean_symbol": "BHARTIARTL"
+    },
+    {
+        "company_name": "Bharti Hexacom Ltd",
+        "token": "23489",
+        "symbol": "BHARTIHEXA-EQ",
+        "clean_symbol": "BHARTIHEXA"
+    },
+    {
+        "company_name": "Bikaji Foods International Ltd",
+        "token": "11966",
+        "symbol": "BIKAJI-EQ",
+        "clean_symbol": "BIKAJI"
+    },
+    {
+        "company_name": "Biocon Ltd",
+        "token": "11373",
+        "symbol": "BIOCON-EQ",
+        "clean_symbol": "BIOCON"
+    },
+    {
+        "company_name": "Birlasoft Ltd",
+        "token": "6994",
+        "symbol": "BSOFT-EQ",
+        "clean_symbol": "BSOFT"
+    },
+    {
+        "company_name": "Blue Dart Express Ltd",
+        "token": "495",
+        "symbol": "BLUEDART-EQ",
+        "clean_symbol": "BLUEDART"
+    },
+    {
+        "company_name": "Blue Jet Healthcare Ltd",
+        "token": "19686",
+        "symbol": "BLUEJET-EQ",
+        "clean_symbol": "BLUEJET"
+    },
+    {
+        "company_name": "Blue Star Ltd",
+        "token": "8311",
+        "symbol": "BLUESTARCO-EQ",
+        "clean_symbol": "BLUESTARCO"
+    },
+    {
+        "company_name": "Bombay Burmah Trading Corporation Ltd",
+        "token": "380",
+        "symbol": "BBTC-EQ",
+        "clean_symbol": "BBTC"
+    },
+    {
+        "company_name": "Bosch Ltd",
+        "token": "2181",
+        "symbol": "BOSCHLTD-EQ",
+        "clean_symbol": "BOSCHLTD"
+    },
+    {
+        "company_name": "Brainbees Solutions Ltd",
+        "token": "24814",
+        "symbol": "FIRSTCRY-EQ",
+        "clean_symbol": "FIRSTCRY"
+    },
+    {
+        "company_name": "Brigade Enterprises Ltd",
+        "token": "15184",
+        "symbol": "BRIGADE-EQ",
+        "clean_symbol": "BRIGADE"
+    },
+    {
+        "company_name": "Britannia Industries Ltd",
+        "token": "547",
+        "symbol": "BRITANNIA-EQ",
+        "clean_symbol": "BRITANNIA"
+    },
+    {
+        "company_name": "C.E. Info Systems Ltd",
+        "token": "7227",
+        "symbol": "MAPMYINDIA-EQ",
+        "clean_symbol": "MAPMYINDIA"
+    },
+    {
+        "company_name": "CCL Products (India) Ltd",
+        "token": "11452",
+        "symbol": "CCL-EQ",
+        "clean_symbol": "CCL"
+    },
+    {
+        "company_name": "CEAT Ltd",
+        "token": "15254",
+        "symbol": "CEATLTD-EQ",
+        "clean_symbol": "CEATLTD"
+    },
+    {
+        "company_name": "CESC Ltd",
+        "token": "628",
+        "symbol": "CESC-EQ",
+        "clean_symbol": "CESC"
+    },
+    {
+        "company_name": "CG Power & Industrial Solutions Ltd",
+        "token": "760",
+        "symbol": "CGPOWER-EQ",
+        "clean_symbol": "CGPOWER"
+    },
+    {
+        "company_name": "CRISIL Ltd",
+        "token": "757",
+        "symbol": "CRISIL-EQ",
+        "clean_symbol": "CRISIL"
+    },
+    {
+        "company_name": "Campus Activewear Ltd",
+        "token": "9362",
+        "symbol": "CAMPUS-EQ",
+        "clean_symbol": "CAMPUS"
+    },
+    {
+        "company_name": "Can Fin Homes Ltd",
+        "token": "583",
+        "symbol": "CANFINHOME-EQ",
+        "clean_symbol": "CANFINHOME"
+    },
+    {
+        "company_name": "Canara Bank",
+        "token": "10794",
+        "symbol": "CANBK-EQ",
+        "clean_symbol": "CANBK"
+    },
+    {
+        "company_name": "Caplin Point Laboratories Ltd",
+        "token": "3906",
+        "symbol": "CAPLIPOINT-EQ",
+        "clean_symbol": "CAPLIPOINT"
+    },
+    {
+        "company_name": "Capri Global Capital Ltd",
+        "token": "20329",
+        "symbol": "CGCL-EQ",
+        "clean_symbol": "CGCL"
+    },
+    {
+        "company_name": "Carborundum Universal Ltd",
+        "token": "595",
+        "symbol": "CARBORUNIV-EQ",
+        "clean_symbol": "CARBORUNIV"
+    },
+    {
+        "company_name": "Castrol India Ltd",
+        "token": "1250",
+        "symbol": "CASTROLIND-EQ",
+        "clean_symbol": "CASTROLIND"
+    },
+    {
+        "company_name": "Central Bank of India",
+        "token": "14894",
+        "symbol": "CENTRALBK-EQ",
+        "clean_symbol": "CENTRALBK"
+    },
+    {
+        "company_name": "Central Depository Services (India) Ltd",
+        "token": "14894",
+        "symbol": "CENTRALBK-EQ",
+        "clean_symbol": "CENTRALBK"
+    },
+    {
+        "company_name": "Century Plyboards (India) Ltd",
+        "token": "13305",
+        "symbol": "CENTURYPLY-EQ",
+        "clean_symbol": "CENTURYPLY"
+    },
+    {
+        "company_name": "Cera Sanitaryware Ltd",
+        "token": "15039",
+        "symbol": "CERA-EQ",
+        "clean_symbol": "CERA"
+    },
+    {
+        "company_name": "Chalet Hotels Ltd",
+        "token": "8546",
+        "symbol": "CHALET-EQ",
+        "clean_symbol": "CHALET"
+    },
+    {
+        "company_name": "Chambal Fertilisers & Chemicals Ltd",
+        "token": "637",
+        "symbol": "CHAMBLFERT-EQ",
+        "clean_symbol": "CHAMBLFERT"
+    },
+    {
+        "company_name": "Chennai Petroleum Corporation Ltd",
+        "token": "2049",
+        "symbol": "CHENNPETRO-EQ",
+        "clean_symbol": "CHENNPETRO"
+    },
+    {
+        "company_name": "Choice International Ltd",
+        "token": "8866",
+        "symbol": "CHOICEIN-EQ",
+        "clean_symbol": "CHOICEIN"
+    },
+    {
+        "company_name": "Cholamandalam Financial Holdings Ltd",
+        "token": "685",
+        "symbol": "CHOLAFIN-EQ",
+        "clean_symbol": "CHOLAFIN"
+    },
+    {
+        "company_name": "Cholamandalam Investment & Finance Company Ltd",
+        "token": "685",
+        "symbol": "CHOLAFIN-EQ",
+        "clean_symbol": "CHOLAFIN"
+    },
+    {
+        "company_name": "Cipla Ltd",
+        "token": "694",
+        "symbol": "CIPLA-EQ",
+        "clean_symbol": "CIPLA"
+    },
+    {
+        "company_name": "City Union Bank Ltd",
+        "token": "5701",
+        "symbol": "CUB-EQ",
+        "clean_symbol": "CUB"
+    },
+    {
+        "company_name": "Clean Science & Technology Ltd",
+        "token": "5049",
+        "symbol": "CLEAN-EQ",
+        "clean_symbol": "CLEAN"
+    },
+    {
+        "company_name": "Coal India Ltd",
+        "token": "20374",
+        "symbol": "COALINDIA-EQ",
+        "clean_symbol": "COALINDIA"
+    },
+    {
+        "company_name": "Cochin Shipyard Ltd",
+        "token": "21508",
+        "symbol": "COCHINSHIP-EQ",
+        "clean_symbol": "COCHINSHIP"
+    },
+    {
+        "company_name": "Coforge Ltd",
+        "token": "11543",
+        "symbol": "COFORGE-EQ",
+        "clean_symbol": "COFORGE"
+    },
+    {
+        "company_name": "Cohance Lifesciences Ltd",
+        "token": "17945",
+        "symbol": "COHANCE-EQ",
+        "clean_symbol": "COHANCE"
+    },
+    {
+        "company_name": "Colgate-Palmolive (India) Ltd",
+        "token": "15141",
+        "symbol": "COLPAL-EQ",
+        "clean_symbol": "COLPAL"
+    },
+    {
+        "company_name": "Computer Age Management Services Ltd",
+        "token": "342",
+        "symbol": "CAMS-EQ",
+        "clean_symbol": "CAMS"
+    },
+    {
+        "company_name": "Concord Biotech Ltd",
+        "token": "18060",
+        "symbol": "CONCORDBIO-EQ",
+        "clean_symbol": "CONCORDBIO"
+    },
+    {
+        "company_name": "Container Corporation Of India Ltd",
+        "token": "4749",
+        "symbol": "CONCOR-EQ",
+        "clean_symbol": "CONCOR"
+    },
+    {
+        "company_name": "Coromandel International Ltd",
+        "token": "739",
+        "symbol": "COROMANDEL-EQ",
+        "clean_symbol": "COROMANDEL"
+    },
+    {
+        "company_name": "Craftsman Automation Ltd",
+        "token": "2854",
+        "symbol": "CRAFTSMAN-EQ",
+        "clean_symbol": "CRAFTSMAN"
+    },
+    {
+        "company_name": "CreditAccess Grameen Ltd",
+        "token": "4421",
+        "symbol": "CREDITACC-EQ",
+        "clean_symbol": "CREDITACC"
+    },
+    {
+        "company_name": "Crompton Greaves Consumer Electricals Ltd",
+        "token": "1901",
+        "symbol": "CUMMINSIND-EQ",
+        "clean_symbol": "CUMMINSIND"
+    },
+    {
+        "company_name": "Cummins India Ltd",
+        "token": "1901",
+        "symbol": "CUMMINSIND-EQ",
+        "clean_symbol": "CUMMINSIND"
+    },
+    {
+        "company_name": "Cyient Ltd",
+        "token": "5748",
+        "symbol": "CYIENT-EQ",
+        "clean_symbol": "CYIENT"
+    },
+    {
+        "company_name": "DCM Shriram Ltd",
+        "token": "811",
+        "symbol": "DCMSHRIRAM-EQ",
+        "clean_symbol": "DCMSHRIRAM"
+    },
+    {
+        "company_name": "DLF Ltd",
+        "token": "14732",
+        "symbol": "DLF-EQ",
+        "clean_symbol": "DLF"
+    },
+    {
+        "company_name": "DOMS Industries Ltd",
+        "token": "20551",
+        "symbol": "DOMS-EQ",
+        "clean_symbol": "DOMS"
+    },
+    {
+        "company_name": "Dabur India Ltd",
+        "token": "772",
+        "symbol": "DABUR-EQ",
+        "clean_symbol": "DABUR"
+    },
+    {
+        "company_name": "Dalmia Bharat Ltd",
+        "token": "8075",
+        "symbol": "DALBHARAT-EQ",
+        "clean_symbol": "DALBHARAT"
+    },
+    {
+        "company_name": "Data Patterns (India) Ltd",
+        "token": "7358",
+        "symbol": "DATAPATTNS-EQ",
+        "clean_symbol": "DATAPATTNS"
+    },
+    {
+        "company_name": "Deepak Fertilisers & Petrochemicals Corp Ltd",
+        "token": "827",
+        "symbol": "DEEPAKFERT-EQ",
+        "clean_symbol": "DEEPAKFERT"
+    },
+    {
+        "company_name": "Deepak Nitrite Ltd",
+        "token": "19943",
+        "symbol": "DEEPAKNTR-EQ",
+        "clean_symbol": "DEEPAKNTR"
+    },
+    {
+        "company_name": "Delhivery Ltd",
+        "token": "9599",
+        "symbol": "DELHIVERY-EQ",
+        "clean_symbol": "DELHIVERY"
+    },
+    {
+        "company_name": "Devyani International Ltd",
+        "token": "5373",
+        "symbol": "DEVYANI-EQ",
+        "clean_symbol": "DEVYANI"
+    },
+    {
+        "company_name": "Divis Laboratories Ltd",
+        "token": "10940",
+        "symbol": "DIVISLAB-EQ",
+        "clean_symbol": "DIVISLAB"
+    },
+    {
+        "company_name": "Dixon Technologies (India) Ltd",
+        "token": "21690",
+        "symbol": "DIXON-EQ",
+        "clean_symbol": "DIXON"
+    },
+    {
+        "company_name": "Dr Agarwals Health Care Ltd",
+        "token": "29452",
+        "symbol": "AGARWALEYE-EQ",
+        "clean_symbol": "AGARWALEYE"
+    },
+    {
+        "company_name": "Dr Lal Pathlabs Ltd",
+        "token": "11654",
+        "symbol": "LALPATHLAB-EQ",
+        "clean_symbol": "LALPATHLAB"
+    },
+    {
+        "company_name": "Dr Reddys Laboratories Ltd",
+        "token": "881",
+        "symbol": "DRREDDY-EQ",
+        "clean_symbol": "DRREDDY"
+    },
+    {
+        "company_name": "EID Parry (India) Ltd",
+        "token": "916",
+        "symbol": "EIDPARRY-EQ",
+        "clean_symbol": "EIDPARRY"
+    },
+    {
+        "company_name": "EIH Ltd",
+        "token": "15399",
+        "symbol": "EIHAHOTELS-EQ",
+        "clean_symbol": "EIHAHOTELS"
+    },
+    {
+        "company_name": "ERIS Lifesciences Ltd",
+        "token": "21154",
+        "symbol": "ERIS-EQ",
+        "clean_symbol": "ERIS"
+    },
+    {
+        "company_name": "Eicher Motors Ltd",
+        "token": "910",
+        "symbol": "EICHERMOT-EQ",
+        "clean_symbol": "EICHERMOT"
+    },
+    {
+        "company_name": "Elecon Engineering Company Ltd",
+        "token": "13643",
+        "symbol": "ELECON-EQ",
+        "clean_symbol": "ELECON"
+    },
+    {
+        "company_name": "Elgi Equipments Ltd",
+        "token": "937",
+        "symbol": "ELGIEQUIP-EQ",
+        "clean_symbol": "ELGIEQUIP"
+    },
+    {
+        "company_name": "Emami Ltd",
+        "token": "13517",
+        "symbol": "EMAMILTD-EQ",
+        "clean_symbol": "EMAMILTD"
+    },
+    {
+        "company_name": "Emcure Pharmaceuticals Ltd",
+        "token": "24398",
+        "symbol": "EMCURE-EQ",
+        "clean_symbol": "EMCURE"
+    },
+    {
+        "company_name": "Endurance Technologies Ltd",
+        "token": "18822",
+        "symbol": "ENDURANCE-EQ",
+        "clean_symbol": "ENDURANCE"
+    },
+    {
+        "company_name": "Engineers India Ltd",
+        "token": "4907",
+        "symbol": "ENGINERSIN-EQ",
+        "clean_symbol": "ENGINERSIN"
+    },
+    {
+        "company_name": "Escorts Kubota Ltd",
+        "token": "958",
+        "symbol": "ESCORTS-EQ",
+        "clean_symbol": "ESCORTS"
+    },
+    {
+        "company_name": "Eternal Ltd",
+        "token": "5097",
+        "symbol": "ETERNAL-EQ",
+        "clean_symbol": "ETERNAL"
+    },
+    {
+        "company_name": "Exide Industries Ltd",
+        "token": "676",
+        "symbol": "EXIDEIND-EQ",
+        "clean_symbol": "EXIDEIND"
+    },
+    {
+        "company_name": "FSN E-Commerce Ventures Ltd",
+        "token": "6545",
+        "symbol": "NYKAA-EQ",
+        "clean_symbol": "NYKAA"
+    },
+    {
+        "company_name": "Federal Bank Ltd",
+        "token": "1023",
+        "symbol": "FEDERALBNK-EQ",
+        "clean_symbol": "FEDERALBNK"
+    },
+    {
+        "company_name": "Fertilizers & Chemicals Travancore Ltd",
+        "token": "827",
+        "symbol": "DEEPAKFERT-EQ",
+        "clean_symbol": "DEEPAKFERT"
+    },
+    {
+        "company_name": "Finolex Cables Ltd",
+        "token": "1038",
+        "symbol": "FINCABLES-EQ",
+        "clean_symbol": "FINCABLES"
+    },
+    {
+        "company_name": "Finolex Industries Ltd",
+        "token": "1041",
+        "symbol": "FINPIPE-EQ",
+        "clean_symbol": "FINPIPE"
+    },
+    {
+        "company_name": "Firstsource Solutions Ltd",
+        "token": "14304",
+        "symbol": "FSL-EQ",
+        "clean_symbol": "FSL"
+    },
+    {
+        "company_name": "Five-Star Business Finance Ltd",
+        "token": "12032",
+        "symbol": "FIVESTAR-EQ",
+        "clean_symbol": "FIVESTAR"
+    },
+    {
+        "company_name": "Force Motors Ltd",
+        "token": "11573",
+        "symbol": "FORCEMOT-EQ",
+        "clean_symbol": "FORCEMOT"
+    },
+    {
+        "company_name": "Fortis Healthcare Ltd",
+        "token": "14592",
+        "symbol": "FORTIS-EQ",
+        "clean_symbol": "FORTIS"
+    },
+    {
+        "company_name": "GAIL (India) Ltd",
+        "token": "4717",
+        "symbol": "GAIL-EQ",
+        "clean_symbol": "GAIL"
+    },
+    {
+        "company_name": "GE Vernova T&D India Ltd",
+        "token": "16783",
+        "symbol": "GVT&D-EQ",
+        "clean_symbol": "GVT&D"
+    },
+    {
+        "company_name": "GMR Airports Ltd",
+        "token": "13528",
+        "symbol": "GMRAIRPORT-EQ",
+        "clean_symbol": "GMRAIRPORT"
+    },
+    {
+        "company_name": "Garden Reach Shipbuilders & Engineers Ltd",
+        "token": "5475",
+        "symbol": "GRSE-EQ",
+        "clean_symbol": "GRSE"
+    },
+    {
+        "company_name": "General Insurance Corporation of India",
+        "token": "277",
+        "symbol": "GICRE-EQ",
+        "clean_symbol": "GICRE"
+    },
+    {
+        "company_name": "Gillette India Ltd",
+        "token": "1576",
+        "symbol": "GILLETTE-EQ",
+        "clean_symbol": "GILLETTE"
+    },
+    {
+        "company_name": "Gland Pharma Ltd",
+        "token": "1186",
+        "symbol": "GLAND-EQ",
+        "clean_symbol": "GLAND"
+    },
+    {
+        "company_name": "Glaxosmithkline Pharmaceuticals Ltd",
+        "token": "1153",
+        "symbol": "GLAXO-EQ",
+        "clean_symbol": "GLAXO"
+    },
+    {
+        "company_name": "Glenmark Pharmaceuticals Ltd",
+        "token": "7406",
+        "symbol": "GLENMARK-EQ",
+        "clean_symbol": "GLENMARK"
+    },
+    {
+        "company_name": "Global Health Ltd",
+        "token": "11956",
+        "symbol": "MEDANTA-EQ",
+        "clean_symbol": "MEDANTA"
+    },
+    {
+        "company_name": "Go Digit General Insurance Ltd",
+        "token": "23799",
+        "symbol": "GODIGIT-EQ",
+        "clean_symbol": "GODIGIT"
+    },
+    {
+        "company_name": "Godawari Power & Ispat Ltd",
+        "token": "13409",
+        "symbol": "GPIL-EQ",
+        "clean_symbol": "GPIL"
+    },
+    {
+        "company_name": "Godfrey Phillips India Ltd",
+        "token": "1181",
+        "symbol": "GODFRYPHLP-EQ",
+        "clean_symbol": "GODFRYPHLP"
+    },
+    {
+        "company_name": "Godrej Agrovet Ltd",
+        "token": "144",
+        "symbol": "GODREJAGRO-EQ",
+        "clean_symbol": "GODREJAGRO"
+    },
+    {
+        "company_name": "Godrej Consumer Products Ltd",
+        "token": "10099",
+        "symbol": "GODREJCP-EQ",
+        "clean_symbol": "GODREJCP"
+    },
+    {
+        "company_name": "Godrej Industries Ltd",
+        "token": "10925",
+        "symbol": "GODREJIND-EQ",
+        "clean_symbol": "GODREJIND"
+    },
+    {
+        "company_name": "Godrej Properties Ltd",
+        "token": "17875",
+        "symbol": "GODREJPROP-EQ",
+        "clean_symbol": "GODREJPROP"
+    },
+    {
+        "company_name": "Granules India Ltd",
+        "token": "11872",
+        "symbol": "GRANULES-EQ",
+        "clean_symbol": "GRANULES"
+    },
+    {
+        "company_name": "Graphite India Ltd",
+        "token": "592",
+        "symbol": "GRAPHITE-EQ",
+        "clean_symbol": "GRAPHITE"
+    },
+    {
+        "company_name": "Grasim Industries Ltd",
+        "token": "1232",
+        "symbol": "GRASIM-EQ",
+        "clean_symbol": "GRASIM"
+    },
+    {
+        "company_name": "Gravita India Ltd",
+        "token": "20534",
+        "symbol": "GRAVITA-EQ",
+        "clean_symbol": "GRAVITA"
+    },
+    {
+        "company_name": "Great Eastern Shipping Company Ltd",
+        "token": "13776",
+        "symbol": "GESHIP-EQ",
+        "clean_symbol": "GESHIP"
+    },
+    {
+        "company_name": "Gujarat Fluorochemicals Ltd",
+        "token": "5204",
+        "symbol": "GMDCLTD-EQ",
+        "clean_symbol": "GMDCLTD"
+    },
+    {
+        "company_name": "Gujarat Gas Ltd",
+        "token": "10599",
+        "symbol": "GUJGASLTD-EQ",
+        "clean_symbol": "GUJGASLTD"
+    },
+    {
+        "company_name": "Gujarat Mineral Development Corporation Ltd",
+        "token": "8585",
+        "symbol": "NLCINDIA-EQ",
+        "clean_symbol": "NLCINDIA"
+    },
+    {
+        "company_name": "Gujarat State Petronet Ltd",
+        "token": "13197",
+        "symbol": "GSPL-EQ",
+        "clean_symbol": "GSPL"
+    },
+    {
+        "company_name": "HBL Engineering Ltd",
+        "token": "13966",
+        "symbol": "HBLENGINE-EQ",
+        "clean_symbol": "HBLENGINE"
+    },
+    {
+        "company_name": "HCL Technologies Ltd",
+        "token": "7229",
+        "symbol": "HCLTECH-EQ",
+        "clean_symbol": "HCLTECH"
+    },
+    {
+        "company_name": "HDFC Asset Management Company Ltd",
+        "token": "1333",
+        "symbol": "HDFCBANK-EQ",
+        "clean_symbol": "HDFCBANK"
+    },
+    {
+        "company_name": "HDFC Bank Ltd",
+        "token": "1333",
+        "symbol": "HDFCBANK-EQ",
+        "clean_symbol": "HDFCBANK"
+    },
+    {
+        "company_name": "HDFC Life Insurance Company Ltd",
+        "token": "467",
+        "symbol": "HDFCLIFE-EQ",
+        "clean_symbol": "HDFCLIFE"
+    },
+    {
+        "company_name": "HEG Ltd",
+        "token": "1336",
+        "symbol": "HEG-EQ",
+        "clean_symbol": "HEG"
+    },
+    {
+        "company_name": "HFCL Ltd",
+        "token": "21951",
+        "symbol": "HFCL-EQ",
+        "clean_symbol": "HFCL"
+    },
+    {
+        "company_name": "Happiest Minds Technologies Ltd",
+        "token": "48",
+        "symbol": "HAPPSTMNDS-EQ",
+        "clean_symbol": "HAPPSTMNDS"
+    },
+    {
+        "company_name": "Havells India Ltd",
+        "token": "9819",
+        "symbol": "HAVELLS-EQ",
+        "clean_symbol": "HAVELLS"
+    },
+    {
+        "company_name": "Hero MotoCorp Ltd",
+        "token": "1348",
+        "symbol": "HEROMOTOCO-EQ",
+        "clean_symbol": "HEROMOTOCO"
+    },
+    {
+        "company_name": "Hexaware Technologies Ltd",
+        "token": "29666",
+        "symbol": "HEXT-EQ",
+        "clean_symbol": "HEXT"
+    },
+    {
+        "company_name": "Himadri Speciality Chemical Ltd",
+        "token": "14334",
+        "symbol": "HSCL-EQ",
+        "clean_symbol": "HSCL"
+    },
+    {
+        "company_name": "Hindalco Industries Ltd",
+        "token": "1363",
+        "symbol": "HINDALCO-EQ",
+        "clean_symbol": "HINDALCO"
+    },
+    {
+        "company_name": "Hindustan Aeronautics Ltd",
+        "token": "2303",
+        "symbol": "HAL-EQ",
+        "clean_symbol": "HAL"
+    },
+    {
+        "company_name": "Hindustan Copper Ltd",
+        "token": "17939",
+        "symbol": "HINDCOPPER-EQ",
+        "clean_symbol": "HINDCOPPER"
+    },
+    {
+        "company_name": "Hindustan Petroleum Corporation Ltd",
+        "token": "1406",
+        "symbol": "HINDPETRO-EQ",
+        "clean_symbol": "HINDPETRO"
+    },
+    {
+        "company_name": "Hindustan Unilever Ltd",
+        "token": "1394",
+        "symbol": "HINDUNILVR-EQ",
+        "clean_symbol": "HINDUNILVR"
+    },
+    {
+        "company_name": "Hindustan Zinc Ltd",
+        "token": "1424",
+        "symbol": "HINDZINC-EQ",
+        "clean_symbol": "HINDZINC"
+    },
+    {
+        "company_name": "Hitachi Energy India Ltd",
+        "token": "18457",
+        "symbol": "POWERINDIA-EQ",
+        "clean_symbol": "POWERINDIA"
+    },
+    {
+        "company_name": "Home First Finance Company India Ltd",
+        "token": "2056",
+        "symbol": "HOMEFIRST-EQ",
+        "clean_symbol": "HOMEFIRST"
+    },
+    {
+        "company_name": "Honasa Consumer Ltd",
+        "token": "19813",
+        "symbol": "HONASA-EQ",
+        "clean_symbol": "HONASA"
+    },
+    {
+        "company_name": "Honeywell Automation India Ltd",
+        "token": "3417",
+        "symbol": "HONAUT-EQ",
+        "clean_symbol": "HONAUT"
+    },
+    {
+        "company_name": "Housing & Urban Development Corporation Ltd",
+        "token": "20825",
+        "symbol": "HUDCO-EQ",
+        "clean_symbol": "HUDCO"
+    },
+    {
+        "company_name": "Hyundai Motor India Ltd",
+        "token": "25844",
+        "symbol": "HYUNDAI-EQ",
+        "clean_symbol": "HYUNDAI"
+    },
+    {
+        "company_name": "ICICI Bank Ltd",
+        "token": "4963",
+        "symbol": "ICICIBANK-EQ",
+        "clean_symbol": "ICICIBANK"
+    },
+    {
+        "company_name": "ICICI Lombard General Insurance Company Ltd",
+        "token": "21770",
+        "symbol": "ICICIGI-EQ",
+        "clean_symbol": "ICICIGI"
+    },
+    {
+        "company_name": "ICICI Prudential Life Insurance Company Ltd",
+        "token": "24861",
+        "symbol": "METALIETF-EQ",
+        "clean_symbol": "METALIETF"
+    },
+    {
+        "company_name": "IDBI Bank Ltd",
+        "token": "1476",
+        "symbol": "IDBI-EQ",
+        "clean_symbol": "IDBI"
+    },
+    {
+        "company_name": "IDFC First Bank Ltd",
+        "token": "11184",
+        "symbol": "IDFCFIRSTB-EQ",
+        "clean_symbol": "IDFCFIRSTB"
+    },
+    {
+        "company_name": "IFCI Ltd",
+        "token": "1491",
+        "symbol": "IFCI-EQ",
+        "clean_symbol": "IFCI"
+    },
+    {
+        "company_name": "IIFL Finance Ltd",
+        "token": "11809",
+        "symbol": "IIFL-EQ",
+        "clean_symbol": "IIFL"
+    },
+    {
+        "company_name": "IRB Infrastructure Developers Ltd",
+        "token": "15313",
+        "symbol": "IRB-EQ",
+        "clean_symbol": "IRB"
+    },
+    {
+        "company_name": "ITC Hotels Ltd",
+        "token": "29251",
+        "symbol": "ITCHOTELS-EQ",
+        "clean_symbol": "ITCHOTELS"
+    },
+    {
+        "company_name": "ITC Ltd",
+        "token": "1660",
+        "symbol": "ITC-EQ",
+        "clean_symbol": "ITC"
+    },
+    {
+        "company_name": "ITI Ltd",
+        "token": "1675",
+        "symbol": "ITI-EQ",
+        "clean_symbol": "ITI"
+    },
+    {
+        "company_name": "Indegene Ltd",
+        "token": "23693",
+        "symbol": "INDGN-EQ",
+        "clean_symbol": "INDGN"
+    },
+    {
+        "company_name": "India Cements Ltd",
+        "token": "1515",
+        "symbol": "INDIACEM-EQ",
+        "clean_symbol": "INDIACEM"
+    },
+    {
+        "company_name": "Indiamart Intermesh Ltd",
+        "token": "10726",
+        "symbol": "INDIAMART-EQ",
+        "clean_symbol": "INDIAMART"
+    },
+    {
+        "company_name": "Indian Bank",
+        "token": "14309",
+        "symbol": "INDIANB-EQ",
+        "clean_symbol": "INDIANB"
+    },
+    {
+        "company_name": "Indian Energy Exchange Ltd",
+        "token": "220",
+        "symbol": "IEX-EQ",
+        "clean_symbol": "IEX"
+    },
+    {
+        "company_name": "Indian Hotels Co Ltd",
+        "token": "1512",
+        "symbol": "INDHOTEL-EQ",
+        "clean_symbol": "INDHOTEL"
+    },
+    {
+        "company_name": "Indian Oil Corporation Ltd",
+        "token": "1624",
+        "symbol": "IOC-EQ",
+        "clean_symbol": "IOC"
+    },
+    {
+        "company_name": "Indian Overseas Bank",
+        "token": "9348",
+        "symbol": "IOB-EQ",
+        "clean_symbol": "IOB"
+    },
+    {
+        "company_name": "Indian Railway Catering & Tourism Corporation Ltd",
+        "token": "2029",
+        "symbol": "IRFC-EQ",
+        "clean_symbol": "IRFC"
+    },
+    {
+        "company_name": "Indian Railway Finance Corporation Ltd",
+        "token": "2029",
+        "symbol": "IRFC-EQ",
+        "clean_symbol": "IRFC"
+    },
+    {
+        "company_name": "Indian Renewable Energy Development Agency Ltd",
+        "token": "20261",
+        "symbol": "IREDA-EQ",
+        "clean_symbol": "IREDA"
+    },
+    {
+        "company_name": "Indraprastha Gas Ltd",
+        "token": "11262",
+        "symbol": "IGL-EQ",
+        "clean_symbol": "IGL"
+    },
+    {
+        "company_name": "Indus Towers Ltd",
+        "token": "29135",
+        "symbol": "INDUSTOWER-EQ",
+        "clean_symbol": "INDUSTOWER"
+    },
+    {
+        "company_name": "IndusInd Bank Ltd",
+        "token": "5258",
+        "symbol": "INDUSINDBK-EQ",
+        "clean_symbol": "INDUSINDBK"
+    },
+    {
+        "company_name": "Info Edge (India) Ltd",
+        "token": "13751",
+        "symbol": "NAUKRI-EQ",
+        "clean_symbol": "NAUKRI"
+    },
+    {
+        "company_name": "Infosys Ltd",
+        "token": "1594",
+        "symbol": "INFY-EQ",
+        "clean_symbol": "INFY"
+    },
+    {
+        "company_name": "Inox India Ltd",
+        "token": "20607",
+        "symbol": "INOXINDIA-EQ",
+        "clean_symbol": "INOXINDIA"
+    },
+    {
+        "company_name": "Inox Wind Ltd",
+        "token": "7852",
+        "symbol": "INOXWIND-EQ",
+        "clean_symbol": "INOXWIND"
+    },
+    {
+        "company_name": "Intellect Design Arena Ltd",
+        "token": "5926",
+        "symbol": "INTELLECT-EQ",
+        "clean_symbol": "INTELLECT"
+    },
+    {
+        "company_name": "Interglobe Aviation Ltd",
+        "token": "11195",
+        "symbol": "INDIGO-EQ",
+        "clean_symbol": "INDIGO"
+    },
+    {
+        "company_name": "International Gemmological Institute (India) Ltd",
+        "token": "4986",
+        "symbol": "IRCON-EQ",
+        "clean_symbol": "IRCON"
+    },
+    {
+        "company_name": "Inventurus Knowledge Solutions Ltd",
+        "token": "28125",
+        "symbol": "IKS-EQ",
+        "clean_symbol": "IKS"
+    },
+    {
+        "company_name": "Ipca Laboratories Ltd",
+        "token": "1633",
+        "symbol": "IPCALAB-EQ",
+        "clean_symbol": "IPCALAB"
+    },
+    {
+        "company_name": "Ircon International Ltd",
+        "token": "4986",
+        "symbol": "IRCON-EQ",
+        "clean_symbol": "IRCON"
+    },
+    {
+        "company_name": "J B Chemicals & Pharmaceuticals Ltd",
+        "token": "1726",
+        "symbol": "JBCHEPHARM-EQ",
+        "clean_symbol": "JBCHEPHARM"
+    },
+    {
+        "company_name": "J K Cements Ltd",
+        "token": "13270",
+        "symbol": "JKCEMENT-EQ",
+        "clean_symbol": "JKCEMENT"
+    },
+    {
+        "company_name": "JBM Auto Ltd",
+        "token": "11655",
+        "symbol": "JBMA-EQ",
+        "clean_symbol": "JBMA"
+    },
+    {
+        "company_name": "JK Tyre & Industries Ltd",
+        "token": "14435",
+        "symbol": "JKTYRE-EQ",
+        "clean_symbol": "JKTYRE"
+    },
+    {
+        "company_name": "JM Financial Ltd",
+        "token": "13637",
+        "symbol": "JMFINANCIL-EQ",
+        "clean_symbol": "JMFINANCIL"
+    },
+    {
+        "company_name": "JSW Energy Ltd",
+        "token": "17869",
+        "symbol": "JSWENERGY-EQ",
+        "clean_symbol": "JSWENERGY"
+    },
+    {
+        "company_name": "JSW Infrastructure Ltd",
+        "token": "19020",
+        "symbol": "JSWINFRA-EQ",
+        "clean_symbol": "JSWINFRA"
+    },
+    {
+        "company_name": "JSW Steel Ltd",
+        "token": "11723",
+        "symbol": "JSWSTEEL-EQ",
+        "clean_symbol": "JSWSTEEL"
+    },
+    {
+        "company_name": "Jaiprakash Power Ventures Ltd",
+        "token": "11763",
+        "symbol": "JPPOWER-EQ",
+        "clean_symbol": "JPPOWER"
+    },
+    {
+        "company_name": "Jammu and Kashmir Bank Ltd",
+        "token": "5633",
+        "symbol": "J&KBANK-EQ",
+        "clean_symbol": "J&KBANK"
+    },
+    {
+        "company_name": "Jindal Saw Ltd",
+        "token": "3024",
+        "symbol": "JINDALSAW-EQ",
+        "clean_symbol": "JINDALSAW"
+    },
+    {
+        "company_name": "Jindal Stainless Ltd",
+        "token": "11236",
+        "symbol": "JSL-EQ",
+        "clean_symbol": "JSL"
+    },
+    {
+        "company_name": "Jindal Steel Ltd",
+        "token": "6733",
+        "symbol": "JINDALSTEL-EQ",
+        "clean_symbol": "JINDALSTEL"
+    },
+    {
+        "company_name": "Jio Financial Services Ltd",
+        "token": "18143",
+        "symbol": "JIOFIN-EQ",
+        "clean_symbol": "JIOFIN"
+    },
+    {
+        "company_name": "Jubilant Foodworks Ltd",
+        "token": "18096",
+        "symbol": "JUBLFOOD-EQ",
+        "clean_symbol": "JUBLFOOD"
+    },
+    {
+        "company_name": "Jubilant Ingrevia Ltd",
+        "token": "2783",
+        "symbol": "JUBLINGREA-EQ",
+        "clean_symbol": "JUBLINGREA"
+    },
+    {
+        "company_name": "Jubilant Pharmova Ltd",
+        "token": "3637",
+        "symbol": "JUBLPHARMA-EQ",
+        "clean_symbol": "JUBLPHARMA"
+    },
+    {
+        "company_name": "Jupiter Wagons Ltd",
+        "token": "20224",
+        "symbol": "JWL-EQ",
+        "clean_symbol": "JWL"
+    },
+    {
+        "company_name": "Jyothy Labs Ltd",
+        "token": "15146",
+        "symbol": "JYOTHYLAB-EQ",
+        "clean_symbol": "JYOTHYLAB"
+    },
+    {
+        "company_name": "Jyoti CNC Automation Ltd",
+        "token": "21334",
+        "symbol": "JYOTICNC-EQ",
+        "clean_symbol": "JYOTICNC"
+    },
+    {
+        "company_name": "K P R Mill Ltd",
+        "token": "14912",
+        "symbol": "KPRMILL-EQ",
+        "clean_symbol": "KPRMILL"
+    },
+    {
+        "company_name": "KEC International Ltd",
+        "token": "13260",
+        "symbol": "KEC-EQ",
+        "clean_symbol": "KEC"
+    },
+    {
+        "company_name": "KEI Industries Ltd",
+        "token": "13310",
+        "symbol": "KEI-EQ",
+        "clean_symbol": "KEI"
+    },
+    {
+        "company_name": "KFin Technologies Ltd",
+        "token": "13359",
+        "symbol": "KFINTECH-EQ",
+        "clean_symbol": "KFINTECH"
+    },
+    {
+        "company_name": "KPIT Technologies Ltd",
+        "token": "9683",
+        "symbol": "KPITTECH-EQ",
+        "clean_symbol": "KPITTECH"
+    },
+    {
+        "company_name": "KSB Ltd",
+        "token": "1949",
+        "symbol": "KSB-EQ",
+        "clean_symbol": "KSB"
+    },
+    {
+        "company_name": "Kajaria Ceramics Ltd",
+        "token": "1808",
+        "symbol": "KAJARIACER-EQ",
+        "clean_symbol": "KAJARIACER"
+    },
+    {
+        "company_name": "Kalpataru Projects International Ltd",
+        "token": "1814",
+        "symbol": "KPIL-EQ",
+        "clean_symbol": "KPIL"
+    },
+    {
+        "company_name": "Kalyan Jewellers India Ltd",
+        "token": "2955",
+        "symbol": "KALYANKJIL-EQ",
+        "clean_symbol": "KALYANKJIL"
+    },
+    {
+        "company_name": "Karur Vysya Bank Ltd",
+        "token": "1838",
+        "symbol": "KARURVYSYA-EQ",
+        "clean_symbol": "KARURVYSYA"
+    },
+    {
+        "company_name": "Kaynes Technology India Ltd",
+        "token": "12092",
+        "symbol": "KAYNES-EQ",
+        "clean_symbol": "KAYNES"
+    },
+    {
+        "company_name": "Kirloskar Brothers Ltd",
+        "token": "18581",
+        "symbol": "KIRLOSBROS-EQ",
+        "clean_symbol": "KIRLOSBROS"
+    },
+    {
+        "company_name": "Kirloskar Oil Engines Ltd",
+        "token": "20936",
+        "symbol": "KIRLOSENG-EQ",
+        "clean_symbol": "KIRLOSENG"
+    },
+    {
+        "company_name": "Kotak Mahindra Bank Ltd",
+        "token": "1922",
+        "symbol": "KOTAKBANK-EQ",
+        "clean_symbol": "KOTAKBANK"
+    },
+    {
+        "company_name": "Krishna Institute of Medical Sciences Ltd",
+        "token": "4847",
+        "symbol": "KIMS-EQ",
+        "clean_symbol": "KIMS"
+    },
+    {
+        "company_name": "L T Foods Ltd",
+        "token": "13816",
+        "symbol": "LTFOODS-EQ",
+        "clean_symbol": "LTFOODS"
+    },
+    {
+        "company_name": "L&T Finance Ltd",
+        "token": "24948",
+        "symbol": "LTF-EQ",
+        "clean_symbol": "LTF"
+    },
+    {
+        "company_name": "L&T Technology Services Ltd",
+        "token": "3411",
+        "symbol": "TATAELXSI-EQ",
+        "clean_symbol": "TATAELXSI"
+    },
+    {
+        "company_name": "LIC Housing Finance Ltd",
+        "token": "1997",
+        "symbol": "LICHSGFIN-EQ",
+        "clean_symbol": "LICHSGFIN"
+    },
+    {
+        "company_name": "LTIMindtree Ltd",
+        "token": "17818",
+        "symbol": "LTIM-EQ",
+        "clean_symbol": "LTIM"
+    },
+    {
+        "company_name": "Larsen & Toubro Ltd",
+        "token": "11483",
+        "symbol": "LT-EQ",
+        "clean_symbol": "LT"
+    },
+    {
+        "company_name": "Latent View Analytics Ltd",
+        "token": "6818",
+        "symbol": "LATENTVIEW-EQ",
+        "clean_symbol": "LATENTVIEW"
+    },
+    {
+        "company_name": "Laurus Labs Ltd",
+        "token": "19234",
+        "symbol": "LAURUSLABS-EQ",
+        "clean_symbol": "LAURUSLABS"
+    },
+    {
+        "company_name": "Leela Palaces Hotels & Resorts Ltd",
+        "token": "757014",
+        "symbol": "THELEELA-EQ",
+        "clean_symbol": "THELEELA"
+    },
+    {
+        "company_name": "Lemon Tree Hotels Ltd",
+        "token": "2606",
+        "symbol": "LEMONTREE-EQ",
+        "clean_symbol": "LEMONTREE"
+    },
+    {
+        "company_name": "Life Insurance Corporation of India",
+        "token": "9480",
+        "symbol": "LICI-EQ",
+        "clean_symbol": "LICI"
+    },
+    {
+        "company_name": "Linde India Ltd",
+        "token": "1627",
+        "symbol": "LINDEINDIA-EQ",
+        "clean_symbol": "LINDEINDIA"
+    },
+    {
+        "company_name": "Lloyds Metals & Energy Ltd",
+        "token": "17313",
+        "symbol": "LLOYDSME-EQ",
+        "clean_symbol": "LLOYDSME"
+    },
+    {
+        "company_name": "Lodha Developers Ltd",
+        "token": "3220",
+        "symbol": "LODHA-EQ",
+        "clean_symbol": "LODHA"
+    },
+    {
+        "company_name": "Lupin Ltd",
+        "token": "10440",
+        "symbol": "LUPIN-EQ",
+        "clean_symbol": "LUPIN"
+    },
+    {
+        "company_name": "MMTC Ltd",
+        "token": "17957",
+        "symbol": "MMTC-EQ",
+        "clean_symbol": "MMTC"
+    },
+    {
+        "company_name": "MRF Ltd",
+        "token": "2277",
+        "symbol": "MRF-EQ",
+        "clean_symbol": "MRF"
+    },
+    {
+        "company_name": "Mahanagar Gas Ltd",
+        "token": "17534",
+        "symbol": "MGL-EQ",
+        "clean_symbol": "MGL"
+    },
+    {
+        "company_name": "Maharashtra Scooters Ltd",
+        "token": "2085",
+        "symbol": "MAHSCOOTER-EQ",
+        "clean_symbol": "MAHSCOOTER"
+    },
+    {
+        "company_name": "Maharashtra Seamless Ltd",
+        "token": "2088",
+        "symbol": "MAHSEAMLES-EQ",
+        "clean_symbol": "MAHSEAMLES"
+    },
+    {
+        "company_name": "Mahindra & Mahindra Financial Services Ltd",
+        "token": "2031",
+        "symbol": "M&M-EQ",
+        "clean_symbol": "M&M"
+    },
+    {
+        "company_name": "Mahindra & Mahindra Ltd",
+        "token": "2031",
+        "symbol": "M&M-EQ",
+        "clean_symbol": "M&M"
+    },
+    {
+        "company_name": "Manappuram Finance Ltd",
+        "token": "19061",
+        "symbol": "MANAPPURAM-EQ",
+        "clean_symbol": "MANAPPURAM"
+    },
+    {
+        "company_name": "Mangalore Refinery And Petrochemicals Ltd",
+        "token": "2283",
+        "symbol": "MRPL-EQ",
+        "clean_symbol": "MRPL"
+    },
+    {
+        "company_name": "Mankind Pharma Ltd",
+        "token": "15380",
+        "symbol": "MANKIND-EQ",
+        "clean_symbol": "MANKIND"
+    },
+    {
+        "company_name": "Marico Ltd",
+        "token": "4067",
+        "symbol": "MARICO-EQ",
+        "clean_symbol": "MARICO"
+    },
+    {
+        "company_name": "Maruti Suzuki India Ltd",
+        "token": "10999",
+        "symbol": "MARUTI-EQ",
+        "clean_symbol": "MARUTI"
+    },
+    {
+        "company_name": "Max Financial Services Ltd",
+        "token": "2142",
+        "symbol": "MFSL-EQ",
+        "clean_symbol": "MFSL"
+    },
+    {
+        "company_name": "Max Healthcare Institute Ltd",
+        "token": "22377",
+        "symbol": "MAXHEALTH-EQ",
+        "clean_symbol": "MAXHEALTH"
+    },
+    {
+        "company_name": "Mazagon Dock Shipbuilders Ltd",
+        "token": "509",
+        "symbol": "MAZDOCK-EQ",
+        "clean_symbol": "MAZDOCK"
+    },
+    {
+        "company_name": "Metropolis Healthcare Ltd",
+        "token": "9581",
+        "symbol": "METROPOLIS-EQ",
+        "clean_symbol": "METROPOLIS"
+    },
+    {
+        "company_name": "Minda Corporation Ltd",
+        "token": "25897",
+        "symbol": "MINDACORP-EQ",
+        "clean_symbol": "MINDACORP"
+    },
+    {
+        "company_name": "Motherson Sumi Wiring India Ltd",
+        "token": "8596",
+        "symbol": "MSUMI-EQ",
+        "clean_symbol": "MSUMI"
+    },
+    {
+        "company_name": "Motilal Oswal Financial Services Ltd",
+        "token": "14947",
+        "symbol": "MOTILALOFS-EQ",
+        "clean_symbol": "MOTILALOFS"
+    },
+    {
+        "company_name": "Mphasis Ltd",
+        "token": "4503",
+        "symbol": "MPHASIS-EQ",
+        "clean_symbol": "MPHASIS"
+    },
+    {
+        "company_name": "Multi Commodity Exchange of India Ltd",
+        "token": "31181",
+        "symbol": "MCX-EQ",
+        "clean_symbol": "MCX"
+    },
+    {
+        "company_name": "Muthoot Finance Ltd",
+        "token": "23650",
+        "symbol": "MUTHOOTFIN-EQ",
+        "clean_symbol": "MUTHOOTFIN"
+    },
+    {
+        "company_name": "NBCC (India) Ltd",
+        "token": "31415",
+        "symbol": "NBCC-EQ",
+        "clean_symbol": "NBCC"
+    },
+    {
+        "company_name": "NCC Ltd",
+        "token": "2319",
+        "symbol": "NCC-EQ",
+        "clean_symbol": "NCC"
+    },
+    {
+        "company_name": "NHPC Ltd",
+        "token": "17400",
+        "symbol": "NHPC-EQ",
+        "clean_symbol": "NHPC"
+    },
+    {
+        "company_name": "NLC India Ltd",
+        "token": "8585",
+        "symbol": "NLCINDIA-EQ",
+        "clean_symbol": "NLCINDIA"
+    },
+    {
+        "company_name": "NMDC Ltd",
+        "token": "15332",
+        "symbol": "NMDC-EQ",
+        "clean_symbol": "NMDC"
+    },
+    {
+        "company_name": "NMDC Steel Ltd",
+        "token": "14180",
+        "symbol": "NSLNISP-EQ",
+        "clean_symbol": "NSLNISP"
+    },
+    {
+        "company_name": "NTPC Green Energy Ltd",
+        "token": "27176",
+        "symbol": "NTPCGREEN-EQ",
+        "clean_symbol": "NTPCGREEN"
+    },
+    {
+        "company_name": "NTPC Ltd",
+        "token": "11630",
+        "symbol": "NTPC-EQ",
+        "clean_symbol": "NTPC"
+    },
+    {
+        "company_name": "Narayana Hrudayalaya Ltd",
+        "token": "11840",
+        "symbol": "NH-EQ",
+        "clean_symbol": "NH"
+    },
+    {
+        "company_name": "Natco Pharma Ltd",
+        "token": "3918",
+        "symbol": "NATCOPHARM-EQ",
+        "clean_symbol": "NATCOPHARM"
+    },
+    {
+        "company_name": "National Aluminium Company Ltd",
+        "token": "6364",
+        "symbol": "NATIONALUM-EQ",
+        "clean_symbol": "NATIONALUM"
+    },
+    {
+        "company_name": "Nava Ltd",
+        "token": "4014",
+        "symbol": "NAVA-EQ",
+        "clean_symbol": "NAVA"
+    },
+    {
+        "company_name": "Navin Fluorine International Ltd",
+        "token": "14672",
+        "symbol": "NAVINFLUOR-EQ",
+        "clean_symbol": "NAVINFLUOR"
+    },
+    {
+        "company_name": "Nestle India Ltd",
+        "token": "17963",
+        "symbol": "NESTLEIND-EQ",
+        "clean_symbol": "NESTLEIND"
+    },
+    {
+        "company_name": "Netweb Technologies India Ltd",
+        "token": "17433",
+        "symbol": "NETWEB-EQ",
+        "clean_symbol": "NETWEB"
+    },
+    {
+        "company_name": "Neuland Laboratories Ltd",
+        "token": "2406",
+        "symbol": "NEULANDLAB-EQ",
+        "clean_symbol": "NEULANDLAB"
+    },
+    {
+        "company_name": "New India Assurance Company Ltd",
+        "token": "399",
+        "symbol": "NIACL-EQ",
+        "clean_symbol": "NIACL"
+    },
+    {
+        "company_name": "Newgen Software Technologies Ltd",
+        "token": "1164",
+        "symbol": "NEWGEN-EQ",
+        "clean_symbol": "NEWGEN"
+    },
+    {
+        "company_name": "Nippon Life India Asset Management Ltd",
+        "token": "6782",
+        "symbol": "NIPPOBATRY-EQ",
+        "clean_symbol": "NIPPOBATRY"
+    },
+    {
+        "company_name": "Niva Bupa Health Insurance Company Ltd",
+        "token": "27097",
+        "symbol": "NIVABUPA-EQ",
+        "clean_symbol": "NIVABUPA"
+    },
+    {
+        "company_name": "Nuvama Wealth Management Ltd",
+        "token": "18721",
+        "symbol": "NUVAMA-EQ",
+        "clean_symbol": "NUVAMA"
+    },
+    {
+        "company_name": "Nuvoco Vistas Corporation Ltd",
+        "token": "5426",
+        "symbol": "NUVOCO-EQ",
+        "clean_symbol": "NUVOCO"
+    },
+    {
+        "company_name": "Oberoi Realty Ltd",
+        "token": "20242",
+        "symbol": "OBEROIRLTY-EQ",
+        "clean_symbol": "OBEROIRLTY"
+    },
+    {
+        "company_name": "Oil & Natural Gas Corpn Ltd",
+        "token": "2475",
+        "symbol": "ONGC-EQ",
+        "clean_symbol": "ONGC"
+    },
+    {
+        "company_name": "Oil India Ltd",
+        "token": "17438",
+        "symbol": "OIL-EQ",
+        "clean_symbol": "OIL"
+    },
+    {
+        "company_name": "Ola Electric Mobility Ltd",
+        "token": "10637",
+        "symbol": "OLECTRA-EQ",
+        "clean_symbol": "OLECTRA"
+    },
+    {
+        "company_name": "Olectra Greentech Ltd",
+        "token": "10637",
+        "symbol": "OLECTRA-EQ",
+        "clean_symbol": "OLECTRA"
+    },
+    {
+        "company_name": "One 97 Communications Ltd",
+        "token": "6705",
+        "symbol": "PAYTM-EQ",
+        "clean_symbol": "PAYTM"
+    },
+    {
+        "company_name": "OneSource Specialty Pharma Ltd",
+        "token": "29224",
+        "symbol": "ONESOURCE-EQ",
+        "clean_symbol": "ONESOURCE"
+    },
+    {
+        "company_name": "Oracle Financial Services Software Ltd",
+        "token": "10738",
+        "symbol": "OFSS-EQ",
+        "clean_symbol": "OFSS"
+    },
+    {
+        "company_name": "P I Industries Ltd",
+        "token": "24184",
+        "symbol": "PIIND-EQ",
+        "clean_symbol": "PIIND"
+    },
+    {
+        "company_name": "PB Fintech Ltd",
+        "token": "6656",
+        "symbol": "POLICYBZR-EQ",
+        "clean_symbol": "POLICYBZR"
+    },
+    {
+        "company_name": "PCBL Chemical Ltd",
+        "token": "2649",
+        "symbol": "PCBL-EQ",
+        "clean_symbol": "PCBL"
+    },
+    {
+        "company_name": "PG Electroplast Ltd",
+        "token": "25358",
+        "symbol": "PGEL-EQ",
+        "clean_symbol": "PGEL"
+    },
+    {
+        "company_name": "PNB Housing Finance Ltd",
+        "token": "18908",
+        "symbol": "PNBHOUSING-EQ",
+        "clean_symbol": "PNBHOUSING"
+    },
+    {
+        "company_name": "PTC Industries Ltd",
+        "token": "16682",
+        "symbol": "PTCIL-EQ",
+        "clean_symbol": "PTCIL"
+    },
+    {
+        "company_name": "PVR Inox Ltd",
+        "token": "13147",
+        "symbol": "PVRINOX-EQ",
+        "clean_symbol": "PVRINOX"
+    },
+    {
+        "company_name": "Page Industries Ltd",
+        "token": "14413",
+        "symbol": "PAGEIND-EQ",
+        "clean_symbol": "PAGEIND"
+    },
+    {
+        "company_name": "Patanjali Foods Ltd",
+        "token": "17029",
+        "symbol": "PATANJALI-EQ",
+        "clean_symbol": "PATANJALI"
+    },
+    {
+        "company_name": "Persistent Systems Ltd",
+        "token": "18365",
+        "symbol": "PERSISTENT-EQ",
+        "clean_symbol": "PERSISTENT"
+    },
+    {
+        "company_name": "Petronet LNG Ltd",
+        "token": "11351",
+        "symbol": "PETRONET-EQ",
+        "clean_symbol": "PETRONET"
+    },
+    {
+        "company_name": "Pfizer Ltd",
+        "token": "2643",
+        "symbol": "PFIZER-EQ",
+        "clean_symbol": "PFIZER"
+    },
+    {
+        "company_name": "Phoenix Mills Ltd",
+        "token": "14552",
+        "symbol": "PHOENIXLTD-EQ",
+        "clean_symbol": "PHOENIXLTD"
+    },
+    {
+        "company_name": "Pidilite Industries Ltd",
+        "token": "2664",
+        "symbol": "PIDILITIND-EQ",
+        "clean_symbol": "PIDILITIND"
+    },
+    {
+        "company_name": "Piramal Pharma Ltd",
+        "token": "11571",
+        "symbol": "PPLPHARMA-EQ",
+        "clean_symbol": "PPLPHARMA"
+    },
+    {
+        "company_name": "Poly Medicure Ltd",
+        "token": "25718",
+        "symbol": "POLYMED-EQ",
+        "clean_symbol": "POLYMED"
+    },
+    {
+        "company_name": "Polycab India Ltd",
+        "token": "9590",
+        "symbol": "POLYCAB-EQ",
+        "clean_symbol": "POLYCAB"
+    },
+    {
+        "company_name": "Poonawalla Fincorp Ltd",
+        "token": "11403",
+        "symbol": "POONAWALLA-EQ",
+        "clean_symbol": "POONAWALLA"
+    },
+    {
+        "company_name": "Power Finance Corporation Ltd",
+        "token": "14299",
+        "symbol": "PFC-EQ",
+        "clean_symbol": "PFC"
+    },
+    {
+        "company_name": "Power Grid Corporation of India Ltd",
+        "token": "14977",
+        "symbol": "POWERGRID-EQ",
+        "clean_symbol": "POWERGRID"
+    },
+    {
+        "company_name": "Praj Industries Ltd",
+        "token": "2705",
+        "symbol": "PRAJIND-EQ",
+        "clean_symbol": "PRAJIND"
+    },
+    {
+        "company_name": "Premier Energies Ltd",
+        "token": "25049",
+        "symbol": "PREMIERENE-EQ",
+        "clean_symbol": "PREMIERENE"
+    },
+    {
+        "company_name": "Prestige Estates Projects Ltd",
+        "token": "20302",
+        "symbol": "PRESTIGE-EQ",
+        "clean_symbol": "PRESTIGE"
+    },
+    {
+        "company_name": "Procter & Gamble Hygiene and Health Care Ltd",
+        "token": "940",
+        "symbol": "PGHL-EQ",
+        "clean_symbol": "PGHL"
+    },
+    {
+        "company_name": "Punjab National Bank",
+        "token": "10666",
+        "symbol": "PNB-EQ",
+        "clean_symbol": "PNB"
+    },
+    {
+        "company_name": "R R Kabel Ltd",
+        "token": "18566",
+        "symbol": "RRKABEL-EQ",
+        "clean_symbol": "RRKABEL"
+    },
+    {
+        "company_name": "RBL Bank Ltd",
+        "token": "18391",
+        "symbol": "RBLBANK-EQ",
+        "clean_symbol": "RBLBANK"
+    },
+    {
+        "company_name": "REC Ltd",
+        "token": "15355",
+        "symbol": "RECLTD-EQ",
+        "clean_symbol": "RECLTD"
+    },
+    {
+        "company_name": "RHI Magnesita India Ltd",
+        "token": "31163",
+        "symbol": "RHIM-EQ",
+        "clean_symbol": "RHIM"
+    },
+    {
+        "company_name": "Radico Khaitan Ltd",
+        "token": "10990",
+        "symbol": "RADICO-EQ",
+        "clean_symbol": "RADICO"
+    },
+    {
+        "company_name": "Rail Vikas Nigam Ltd",
+        "token": "9552",
+        "symbol": "RVNL-EQ",
+        "clean_symbol": "RVNL"
+    },
+    {
+        "company_name": "Railtel Corporation of India Ltd",
+        "token": "2029",
+        "symbol": "IRFC-EQ",
+        "clean_symbol": "IRFC"
+    },
+    {
+        "company_name": "Rainbow Childrens Medicare Ltd",
+        "token": "9408",
+        "symbol": "RAINBOW-EQ",
+        "clean_symbol": "RAINBOW"
+    },
+    {
+        "company_name": "Ramkrishna Forgings Ltd",
+        "token": "11411",
+        "symbol": "RKFORGE-EQ",
+        "clean_symbol": "RKFORGE"
+    },
+    {
+        "company_name": "Rashtriya Chemicals & Fertilizers Ltd",
+        "token": "2866",
+        "symbol": "RCF-EQ",
+        "clean_symbol": "RCF"
+    },
+    {
+        "company_name": "Redington Ltd",
+        "token": "14255",
+        "symbol": "REDINGTON-EQ",
+        "clean_symbol": "REDINGTON"
+    },
+    {
+        "company_name": "Reliance Industries Ltd",
+        "token": "2885",
+        "symbol": "RELIANCE-EQ",
+        "clean_symbol": "RELIANCE"
+    },
+    {
+        "company_name": "Reliance Infrastructure Ltd",
+        "token": "10217",
+        "symbol": "ADANIENSOL-EQ",
+        "clean_symbol": "ADANIENSOL"
+    },
+    {
+        "company_name": "Reliance Power Ltd",
+        "token": "15259",
+        "symbol": "RPOWER-EQ",
+        "clean_symbol": "RPOWER"
+    },
+    {
+        "company_name": "Rites Ltd",
+        "token": "3761",
+        "symbol": "RITES-EQ",
+        "clean_symbol": "RITES"
+    },
+    {
+        "company_name": "SBFC Finance Ltd",
+        "token": "18026",
+        "symbol": "SBFC-EQ",
+        "clean_symbol": "SBFC"
+    },
+    {
+        "company_name": "SBI Cards & Payment Services Ltd",
+        "token": "17971",
+        "symbol": "SBICARD-EQ",
+        "clean_symbol": "SBICARD"
+    },
+    {
+        "company_name": "SBI Life Insurance Company Ltd",
+        "token": "3045",
+        "symbol": "SBIN-EQ",
+        "clean_symbol": "SBIN"
+    },
+    {
+        "company_name": "SJVN Ltd",
+        "token": "18883",
+        "symbol": "SJVN-EQ",
+        "clean_symbol": "SJVN"
+    },
+    {
+        "company_name": "SKF India Ltd",
+        "token": "3186",
+        "symbol": "SKFINDIA-EQ",
+        "clean_symbol": "SKFINDIA"
+    },
+    {
+        "company_name": "SRF Ltd",
+        "token": "3273",
+        "symbol": "SRF-EQ",
+        "clean_symbol": "SRF"
+    },
+    {
+        "company_name": "Sagility Ltd",
+        "token": "27052",
+        "symbol": "SAGILITY-EQ",
+        "clean_symbol": "SAGILITY"
+    },
+    {
+        "company_name": "Sai Life Sciences Ltd",
+        "token": "27839",
+        "symbol": "SAILIFE-EQ",
+        "clean_symbol": "SAILIFE"
+    },
+    {
+        "company_name": "Sammaan Capital Ltd",
+        "token": "30125",
+        "symbol": "SAMMAANCAP-EQ",
+        "clean_symbol": "SAMMAANCAP"
+    },
+    {
+        "company_name": "Samvardhana Motherson International Ltd",
+        "token": "4204",
+        "symbol": "MOTHERSON-EQ",
+        "clean_symbol": "MOTHERSON"
+    },
+    {
+        "company_name": "Sapphire Foods India Ltd",
+        "token": "6718",
+        "symbol": "SAPPHIRE-EQ",
+        "clean_symbol": "SAPPHIRE"
+    },
+    {
+        "company_name": "Sarda Energy & Minerals Ltd",
+        "token": "17758",
+        "symbol": "SARDAEN-EQ",
+        "clean_symbol": "SARDAEN"
+    },
+    {
+        "company_name": "Saregama India Ltd",
+        "token": "4892",
+        "symbol": "SAREGAMA-EQ",
+        "clean_symbol": "SAREGAMA"
+    },
+    {
+        "company_name": "Schaeffler India Ltd",
+        "token": "1011",
+        "symbol": "SCHAEFFLER-EQ",
+        "clean_symbol": "SCHAEFFLER"
+    },
+    {
+        "company_name": "Schneider Electric Infrastructure Ltd",
+        "token": "31234",
+        "symbol": "SCHNEIDER-EQ",
+        "clean_symbol": "SCHNEIDER"
+    },
+    {
+        "company_name": "Shipping Corporation of India Ltd",
+        "token": "3048",
+        "symbol": "SCI-EQ",
+        "clean_symbol": "SCI"
+    },
+    {
+        "company_name": "Shree Cement Ltd",
+        "token": "3103",
+        "symbol": "SHREECEM-EQ",
+        "clean_symbol": "SHREECEM"
+    },
+    {
+        "company_name": "Shriram Finance Ltd",
+        "token": "4306",
+        "symbol": "SHRIRAMFIN-EQ",
+        "clean_symbol": "SHRIRAMFIN"
+    },
+    {
+        "company_name": "Shyam Metalics & Energy Ltd",
+        "token": "4693",
+        "symbol": "SHYAMMETL-EQ",
+        "clean_symbol": "SHYAMMETL"
+    },
+    {
+        "company_name": "Siemens Energy India Ltd",
+        "token": "756871",
+        "symbol": "ENRIN-EQ",
+        "clean_symbol": "ENRIN"
+    },
+    {
+        "company_name": "Siemens Ltd",
+        "token": "3150",
+        "symbol": "SIEMENS-EQ",
+        "clean_symbol": "SIEMENS"
+    },
+    {
+        "company_name": "SignatureGlobal India Ltd",
+        "token": "18743",
+        "symbol": "SIGNATURE-EQ",
+        "clean_symbol": "SIGNATURE"
+    },
+    {
+        "company_name": "Sobha Ltd",
+        "token": "13826",
+        "symbol": "SOBHA-EQ",
+        "clean_symbol": "SOBHA"
+    },
+    {
+        "company_name": "Solar Industries India Ltd",
+        "token": "13332",
+        "symbol": "SOLARINDS-EQ",
+        "clean_symbol": "SOLARINDS"
+    },
+    {
+        "company_name": "Sona BLW Precision Forgings Ltd",
+        "token": "4684",
+        "symbol": "SONACOMS-EQ",
+        "clean_symbol": "SONACOMS"
+    },
+    {
+        "company_name": "Sonata Software Ltd",
+        "token": "6596",
+        "symbol": "SONATSOFTW-EQ",
+        "clean_symbol": "SONATSOFTW"
+    },
+    {
+        "company_name": "Star Health & Allied Insurance Company Ltd",
+        "token": "7083",
+        "symbol": "STARHEALTH-EQ",
+        "clean_symbol": "STARHEALTH"
+    },
+    {
+        "company_name": "State Bank of India",
+        "token": "3045",
+        "symbol": "SBIN-EQ",
+        "clean_symbol": "SBIN"
+    },
+    {
+        "company_name": "Steel Authority of India Ltd",
+        "token": "2963",
+        "symbol": "SAIL-EQ",
+        "clean_symbol": "SAIL"
+    },
+    {
+        "company_name": "Sumitomo Chemical India Ltd",
+        "token": "17105",
+        "symbol": "SUMICHEM-EQ",
+        "clean_symbol": "SUMICHEM"
+    },
+    {
+        "company_name": "Sun Pharmaceutical Industries Ltd",
+        "token": "3351",
+        "symbol": "SUNPHARMA-EQ",
+        "clean_symbol": "SUNPHARMA"
+    },
+    {
+        "company_name": "Sun TV Network Ltd",
+        "token": "13404",
+        "symbol": "SUNTV-EQ",
+        "clean_symbol": "SUNTV"
+    },
+    {
+        "company_name": "Sundaram Finance Ltd",
+        "token": "3339",
+        "symbol": "SUNDARMFIN-EQ",
+        "clean_symbol": "SUNDARMFIN"
+    },
+    {
+        "company_name": "Sundram Fasteners Ltd",
+        "token": "3345",
+        "symbol": "SUNDRMFAST-EQ",
+        "clean_symbol": "SUNDRMFAST"
+    },
+    {
+        "company_name": "Supreme Industries Ltd",
+        "token": "3363",
+        "symbol": "SUPREMEIND-EQ",
+        "clean_symbol": "SUPREMEIND"
+    },
+    {
+        "company_name": "Suzlon Energy Ltd",
+        "token": "12018",
+        "symbol": "SUZLON-EQ",
+        "clean_symbol": "SUZLON"
+    },
+    {
+        "company_name": "Swan Corp Ltd",
+        "token": "27095",
+        "symbol": "SWANCORP-EQ",
+        "clean_symbol": "SWANCORP"
+    },
+    {
+        "company_name": "Swiggy Ltd",
+        "token": "27066",
+        "symbol": "SWIGGY-EQ",
+        "clean_symbol": "SWIGGY"
+    },
+    {
+        "company_name": "Syngene International Ltd",
+        "token": "10243",
+        "symbol": "SYNGENE-EQ",
+        "clean_symbol": "SYNGENE"
+    },
+    {
+        "company_name": "Syrma SGS Technology Ltd",
+        "token": "10793",
+        "symbol": "SYRMA-EQ",
+        "clean_symbol": "SYRMA"
+    },
+    {
+        "company_name": "TBO Tek Ltd",
+        "token": "23740",
+        "symbol": "TBOTEK-EQ",
+        "clean_symbol": "TBOTEK"
+    },
+    {
+        "company_name": "TVS Motor Company Ltd",
+        "token": "8479",
+        "symbol": "TVSMOTOR-EQ",
+        "clean_symbol": "TVSMOTOR"
+    },
+    {
+        "company_name": "Tata Chemicals Ltd",
+        "token": "3405",
+        "symbol": "TATACHEM-EQ",
+        "clean_symbol": "TATACHEM"
+    },
+    {
+        "company_name": "Tata Communications Ltd",
+        "token": "3721",
+        "symbol": "TATACOMM-EQ",
+        "clean_symbol": "TATACOMM"
+    },
+    {
+        "company_name": "Tata Consultancy Services Ltd",
+        "token": "11536",
+        "symbol": "TCS-EQ",
+        "clean_symbol": "TCS"
+    },
+    {
+        "company_name": "Tata Consumer Products Ltd",
+        "token": "3432",
+        "symbol": "TATACONSUM-EQ",
+        "clean_symbol": "TATACONSUM"
+    },
+    {
+        "company_name": "Tata Elxsi Ltd",
+        "token": "3411",
+        "symbol": "TATAELXSI-EQ",
+        "clean_symbol": "TATAELXSI"
+    },
+    {
+        "company_name": "Tata Investment Corporation Ltd",
+        "token": "1964",
+        "symbol": "TRENT-EQ",
+        "clean_symbol": "TRENT"
+    },
+    {
+        "company_name": "Tata Motors Passenger Vehicles Ltd",
+        "token": "3456",
+        "symbol": "TMPV-EQ",
+        "clean_symbol": "TMPV"
+    },
+    {
+        "company_name": "Tata Power Company Ltd",
+        "token": "3426",
+        "symbol": "TATAPOWER-EQ",
+        "clean_symbol": "TATAPOWER"
+    },
+    {
+        "company_name": "Tata Steel Ltd",
+        "token": "3499",
+        "symbol": "TATASTEEL-EQ",
+        "clean_symbol": "TATASTEEL"
+    },
+    {
+        "company_name": "Tata Technologies Ltd",
+        "token": "20293",
+        "symbol": "TATATECH-EQ",
+        "clean_symbol": "TATATECH"
+    },
+    {
+        "company_name": "Tata Teleservices (Maharashtra) Ltd",
+        "token": "3499",
+        "symbol": "TATASTEEL-EQ",
+        "clean_symbol": "TATASTEEL"
+    },
+    {
+        "company_name": "Tech Mahindra Ltd",
+        "token": "13538",
+        "symbol": "TECHM-EQ",
+        "clean_symbol": "TECHM"
+    },
+    {
+        "company_name": "Techno Electric & Engineering Company Ltd",
+        "token": "6445",
+        "symbol": "TECHNOE-EQ",
+        "clean_symbol": "TECHNOE"
+    },
+    {
+        "company_name": "Tejas Networks Ltd",
+        "token": "21131",
+        "symbol": "TEJASNET-EQ",
+        "clean_symbol": "TEJASNET"
+    },
+    {
+        "company_name": "The Ramco Cements Ltd",
+        "token": "2043",
+        "symbol": "RAMCOCEM-EQ",
+        "clean_symbol": "RAMCOCEM"
+    },
+    {
+        "company_name": "Thermax Ltd",
+        "token": "3475",
+        "symbol": "THERMAX-EQ",
+        "clean_symbol": "THERMAX"
+    },
+    {
+        "company_name": "Timken India Ltd",
+        "token": "14198",
+        "symbol": "TIMKEN-EQ",
+        "clean_symbol": "TIMKEN"
+    },
+    {
+        "company_name": "Titagarh Rail Systems Ltd",
+        "token": "15414",
+        "symbol": "TITAGARH-EQ",
+        "clean_symbol": "TITAGARH"
+    },
+    {
+        "company_name": "Titan Company Ltd",
+        "token": "3506",
+        "symbol": "TITAN-EQ",
+        "clean_symbol": "TITAN"
+    },
+    {
+        "company_name": "Torrent Pharmaceuticals Ltd",
+        "token": "3518",
+        "symbol": "TORNTPHARM-EQ",
+        "clean_symbol": "TORNTPHARM"
+    },
+    {
+        "company_name": "Torrent Power Ltd",
+        "token": "13786",
+        "symbol": "TORNTPOWER-EQ",
+        "clean_symbol": "TORNTPOWER"
+    },
+    {
+        "company_name": "Transformers & Rectifiers India Ltd",
+        "token": "13577",
+        "symbol": "VOLTAMP-EQ",
+        "clean_symbol": "VOLTAMP"
+    },
+    {
+        "company_name": "Trent Ltd",
+        "token": "1964",
+        "symbol": "TRENT-EQ",
+        "clean_symbol": "TRENT"
+    },
+    {
+        "company_name": "Trident Ltd",
+        "token": "9685",
+        "symbol": "TRIDENT-EQ",
+        "clean_symbol": "TRIDENT"
+    },
+    {
+        "company_name": "Triveni Engineering and Industries Ltd",
+        "token": "13081",
+        "symbol": "TRIVENI-EQ",
+        "clean_symbol": "TRIVENI"
+    },
+    {
+        "company_name": "Triveni Turbine Ltd",
+        "token": "25584",
+        "symbol": "TRITURBINE-EQ",
+        "clean_symbol": "TRITURBINE"
+    },
+    {
+        "company_name": "Tube Investments of India Ltd",
+        "token": "312",
+        "symbol": "TIINDIA-EQ",
+        "clean_symbol": "TIINDIA"
+    },
+    {
+        "company_name": "UCO Bank",
+        "token": "11223",
+        "symbol": "UCOBANK-EQ",
+        "clean_symbol": "UCOBANK"
+    },
+    {
+        "company_name": "UPL Ltd",
+        "token": "11287",
+        "symbol": "UPL-EQ",
+        "clean_symbol": "UPL"
+    },
+    {
+        "company_name": "UTI Asset Management Company Ltd",
+        "token": "527",
+        "symbol": "UTIAMC-EQ",
+        "clean_symbol": "UTIAMC"
+    },
+    {
+        "company_name": "UltraTech Cement Ltd",
+        "token": "11532",
+        "symbol": "ULTRACEMCO-EQ",
+        "clean_symbol": "ULTRACEMCO"
+    },
+    {
+        "company_name": "Union Bank of India",
+        "token": "10753",
+        "symbol": "UNIONBANK-EQ",
+        "clean_symbol": "UNIONBANK"
+    },
+    {
+        "company_name": "United Breweries Ltd",
+        "token": "16713",
+        "symbol": "UBL-EQ",
+        "clean_symbol": "UBL"
+    },
+    {
+        "company_name": "United Spirits Ltd",
+        "token": "10447",
+        "symbol": "UNITDSPR-EQ",
+        "clean_symbol": "UNITDSPR"
+    },
+    {
+        "company_name": "Uno Minda Ltd",
+        "token": "14154",
+        "symbol": "UNOMINDA-EQ",
+        "clean_symbol": "UNOMINDA"
+    },
+    {
+        "company_name": "Usha Martin Ltd",
+        "token": "8840",
+        "symbol": "USHAMART-EQ",
+        "clean_symbol": "USHAMART"
+    },
+    {
+        "company_name": "V-Guard Industries Ltd",
+        "token": "15362",
+        "symbol": "VGUARD-EQ",
+        "clean_symbol": "VGUARD"
+    },
+    {
+        "company_name": "Valor Estate Ltd",
+        "token": "18124",
+        "symbol": "DBREALTY-EQ",
+        "clean_symbol": "DBREALTY"
+    },
+    {
+        "company_name": "Vardhman Textiles Ltd",
+        "token": "2073",
+        "symbol": "VTL-EQ",
+        "clean_symbol": "VTL"
+    },
+    {
+        "company_name": "Varun Beverages Ltd",
+        "token": "18921",
+        "symbol": "VBL-EQ",
+        "clean_symbol": "VBL"
+    },
+    {
+        "company_name": "Vedant Fashions Ltd",
+        "token": "8167",
+        "symbol": "MANYAVAR-EQ",
+        "clean_symbol": "MANYAVAR"
+    },
+    {
+        "company_name": "Vedanta Ltd",
+        "token": "3063",
+        "symbol": "VEDL-EQ",
+        "clean_symbol": "VEDL"
+    },
+    {
+        "company_name": "Ventive Hospitality Ltd",
+        "token": "28847",
+        "symbol": "VENTIVE-EQ",
+        "clean_symbol": "VENTIVE"
+    },
+    {
+        "company_name": "Vijaya Diagnostic Centre Ltd",
+        "token": "5585",
+        "symbol": "VIJAYA-EQ",
+        "clean_symbol": "VIJAYA"
+    },
+    {
+        "company_name": "Vishal Mega Mart Ltd",
+        "token": "27969",
+        "symbol": "VMM-EQ",
+        "clean_symbol": "VMM"
+    },
+    {
+        "company_name": "Vodafone Idea Ltd",
+        "token": "14366",
+        "symbol": "IDEA-EQ",
+        "clean_symbol": "IDEA"
+    },
+    {
+        "company_name": "Voltas Ltd",
+        "token": "3718",
+        "symbol": "VOLTAS-EQ",
+        "clean_symbol": "VOLTAS"
+    },
+    {
+        "company_name": "Waaree Energies Ltd",
+        "token": "25907",
+        "symbol": "WAAREEENER-EQ",
+        "clean_symbol": "WAAREEENER"
+    },
+    {
+        "company_name": "Welspun Corp Ltd",
+        "token": "11821",
+        "symbol": "WELCORP-EQ",
+        "clean_symbol": "WELCORP"
+    },
+    {
+        "company_name": "Welspun Living Ltd",
+        "token": "11253",
+        "symbol": "WELSPUNLIV-EQ",
+        "clean_symbol": "WELSPUNLIV"
+    },
+    {
+        "company_name": "Whirlpool of India Ltd",
+        "token": "18011",
+        "symbol": "WHIRLPOOL-EQ",
+        "clean_symbol": "WHIRLPOOL"
+    },
+    {
+        "company_name": "Wipro Ltd",
+        "token": "3787",
+        "symbol": "WIPRO-EQ",
+        "clean_symbol": "WIPRO"
+    },
+    {
+        "company_name": "Wockhardt Ltd",
+        "token": "7506",
+        "symbol": "WOCKPHARMA-EQ",
+        "clean_symbol": "WOCKPHARMA"
+    },
+    {
+        "company_name": "Yes Bank Ltd",
+        "token": "11915",
+        "symbol": "YESBANK-EQ",
+        "clean_symbol": "YESBANK"
+    },
+    {
+        "company_name": "ZF Commercial Vehicle Control System India Ltd",
+        "token": "16915",
+        "symbol": "ZFCVINDIA-EQ",
+        "clean_symbol": "ZFCVINDIA"
+    },
+    {
+        "company_name": "Zee Entertainment Enterprises Ltd",
+        "token": "3812",
+        "symbol": "ZEEL-EQ",
+        "clean_symbol": "ZEEL"
+    },
+    {
+        "company_name": "Zen Technologies Ltd",
+        "token": "7508",
+        "symbol": "ZENTEC-EQ",
+        "clean_symbol": "ZENTEC"
+    },
+    {
+        "company_name": "Zensar Technologies Ltd",
+        "token": "1076",
+        "symbol": "ZENSARTECH-EQ",
+        "clean_symbol": "ZENSARTECH"
+    },
+    {
+        "company_name": "Zydus Lifesciences Ltd",
+        "token": "7929",
+        "symbol": "ZYDUSLIFE-EQ",
+        "clean_symbol": "ZYDUSLIFE"
+    },
+    {
+        "company_name": "eClerx Services Ltd",
+        "token": "15179",
+        "symbol": "ECLERX-EQ",
+        "clean_symbol": "ECLERX"
+    }
+]
