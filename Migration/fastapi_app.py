@@ -14,7 +14,7 @@ import re
 import uuid
 import logging
 from collections import defaultdict
-from sqlalchemy import create_engine, text, MetaData, Table, Column, Integer, String, Float, Boolean, JSON, ForeignKey, UniqueConstraint
+from sqlalchemy import create_engine, text, MetaData, Table, Column, Integer, String, Float, Boolean, JSON, ForeignKey, UniqueConstraint, inspect, BigInteger, DateTime, Text
 from sqlalchemy.dialects.postgresql import insert
 from SmartApi import SmartConnect
 # Changing tqdm.notebook to tqdm for script compatibility
@@ -24,19 +24,22 @@ from pydantic import BaseModel
 
 # --- GLOBAL LOGGING SETUP ---
 LOG_DIR = 'logs'
-if not os.path.exists(LOG_DIR): os.makedirs(LOG_DIR)
-GLOBAL_LOG_FILE = os.path.join(LOG_DIR, 'server_operations.log')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
+logger = logging.getLogger()
 
+# --- GLOBAL STATE ---
+engines = {"local": None, "neon": None}
+key_manager = None
+GLOBAL_LOG_FILE = os.path.join(LOG_DIR, 'app.log')
+
+# --- LOGGING FUNCTIONS ---
 def log_message(msg, console=True):
-    """
-    Logs a message to the global log file.
-    Optionally prints to console (default: True).
-    """
-    timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     formatted_msg = f"[{timestamp}] {msg}"
     
     # 1. Write to File
     try:
+        if not os.path.exists(LOG_DIR): os.makedirs(LOG_DIR)
         with open(GLOBAL_LOG_FILE, 'a', encoding='utf-8') as f:
             f.write(formatted_msg + "\n")
     except Exception as e:
@@ -46,13 +49,45 @@ def log_message(msg, console=True):
     if console:
         print(formatted_msg)
 
-# Setup Logging (Standard Lib for other libraries if needed)
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
-logger = logging.getLogger()
+def init_logging_db(engine):
+    """Creates the system_logs table if it doesn't exist."""
+    metadata = MetaData()
+    system_logs = Table(
+        'system_logs', metadata,
+        Column('id', BigInteger, primary_key=True, autoincrement=True),
+        Column('timestamp', DateTime, default=datetime.datetime.utcnow),
+        Column('level', String(20)),   # INFO, ERROR, WARNING
+        Column('source', String(50)),  # angel_api, system, cron
+        Column('event', String(50)),   # search, login, error
+        Column('message', Text),
+        Column('context', JSON)        # Extra data (url, params, etc)
+    )
+    metadata.create_all(engine)
+    log_message("✅ Logging Table (system_logs) Verified.")
 
-# --- GLOBAL STATE ---
-engines = {"local": None, "neon": None}
-key_manager = None
+def log_to_db(level, source, event, message, context=None):
+    """Writes a structured log entry to the DB (Neon preferred, fallback to Local)."""
+    # Try Neon first, then Local
+    engine = engines.get("neon") or engines.get("local")
+    
+    if not engine:
+        # Fallback to file if no DB
+        log_message(f"[{level}] {source}.{event}: {message} | {context}", console=True)
+        return
+
+    try:
+        stmt = insert(Table('system_logs', MetaData(), autoload_with=engine)).values(
+            level=level,
+            source=source,
+            event=event,
+            message=message,
+            context=context or {}
+        )
+        with engine.begin() as conn:
+            conn.execute(stmt)
+    except Exception as e:
+        # Fallback to file if DB write fails
+        log_message(f"⚠️ DB Log Failed: {e} | Original: {message}")
 
 # --- CELL 1: Database Connection ---
 def run_cell_1():
@@ -62,7 +97,7 @@ def run_cell_1():
     # --- 1. LOCAL CONFIGURATION ---
     DB_USER = "postgres"
     DB_PASS = "postgres"
-    DB_HOST = "localhost"
+    DB_HOST = os.getenv("DB_HOST", "localhost")
     DB_PORT = "5432"
     DB_NAME = "postgres"
 
@@ -71,15 +106,18 @@ def run_cell_1():
     # --- 2. NEON CONFIGURATION ---
     NEON_DB_URL = "postgresql://neondb_owner:***REDACTED***@ep-late-feather-a127cgma-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
 
-    # Connect Local
-    try:
-        local_engine = create_engine(LOCAL_DB_URL)
-        with local_engine.connect() as conn:
-            res = conn.execute(text("SELECT 1")).scalar()
-            log_message(f"✅ [LOCAL] Database Connection Successful! (Test result: {res})")
-        engines["local"] = local_engine
-    except Exception as e:
-        log_message(f"❌ [LOCAL] Connection Failed: {e}")
+    # Connect Local (Skip if on Vercel)
+    if not os.environ.get("VERCEL"):
+        try:
+            local_engine = create_engine(LOCAL_DB_URL)
+            with local_engine.connect() as conn:
+                res = conn.execute(text("SELECT 1")).scalar()
+                log_message(f"✅ [LOCAL] Database Connection Successful! (Test result: {res})")
+            engines["local"] = local_engine
+        except Exception as e:
+            log_message(f"❌ [LOCAL] Connection Failed: {e}")
+    else:
+        log_message("⚠️ [LOCAL] Skipping Local DB connection (Running on Vercel)")
 
     # Connect Neon
     try:
@@ -913,8 +951,8 @@ def run_cell_7():
 
     def clean_company_name(name):
         """Removes suffixes like 'Limited', '(India) Ltd'."""
-        cleaned = re.sub(r'\\s+\\(?(Limited|Ltd|India|LTD|LIMITED|INDIA|Plc|Corp|Corporation)\\)?\\.?$', '', name, flags=re.IGNORECASE)
-        cleaned = re.sub(r'\\s+\\([^)]*\\)', '', cleaned)
+        cleaned = re.sub(r'\s+\(?(Limited|Ltd|India|LTD|LIMITED|INDIA|Plc|Corp|Corporation)\)?\.?$', '', name, flags=re.IGNORECASE)
+        cleaned = re.sub(r'\s+\([^)]*\)', '', cleaned)
         return cleaned.strip()
 
     def perform_search(keyword):
@@ -928,7 +966,7 @@ def run_cell_7():
         headers = session.headers.copy()
         headers["X-Requestid"] = str(uuid.uuid4())
         
-        # Exact payload matching your browser
+        SEARCH_URL = "https://global-search-bbe-prod.angelone.in/v5/search"
         params = {
             "userType": "B2C",
             "accountType": "D",
@@ -936,8 +974,10 @@ def run_cell_7():
         }
         
         try:
-            # Log to file ONLY to keep console clean for progress bar
-            log_message(f"🔎 Searching Angel API: {SEARCH_URL} | Keyword: {keyword}", console=False)
+            # Log to DB instead of Console/File to reduce noise
+            log_to_db("INFO", "angel_api", "search", f"Searching: {keyword}", 
+                      context={"url": SEARCH_URL, "keyword": keyword})
+            
             response = session.get(SEARCH_URL, headers=headers, params=params, timeout=5)
             if response.status_code == 200:
                 data = response.json()
@@ -1082,21 +1122,18 @@ def run_cell_8():
         metadata = MetaData()
         
         # Reflect existing 'indices' table to allow Foreign Key linking
-        try:
-            indices_table = Table('indices', metadata, autoload_with=engine)
-            log_message("✅ Detected existing 'indices' table.")
-        except Exception as e:
-            log_message(f"❌ CRITICAL ERROR: Table 'indices' not found. Run Cell 4 first!")
-            raise e
+        # Reflect existing 'indices' table to allow Foreign Key linking
+        inspector = inspect(engine)
+        if not inspector.has_table("indices"):
+             log_message(f"❌ CRITICAL ERROR: Table 'indices' not found. Run Cell 4 first!")
+             raise Exception("Table 'indices' not found")
+        
+        indices_table = Table('indices', metadata, autoload_with=engine)
+        log_message("✅ Detected existing 'indices' table.")
 
-        # Drop tables to reset schema (Since we are changing columns)
-        with engine.begin() as conn:
-            conn.execute(text("DROP TABLE IF EXISTS stock_indices_map CASCADE"))
-            conn.execute(text("DROP TABLE IF EXISTS stocks_master CASCADE"))
-
-        # --- TABLE: STOCKS_MASTER ---
+        # --- TABLE: STOCKS ---
         stocks_table = Table(
-            'stocks_master', metadata,
+            'stocks', metadata,
             Column('id', Integer, primary_key=True, autoincrement=True),
             Column('master_key', String),
             Column('symbol', String, unique=True, nullable=False), # Unique Key
@@ -1104,11 +1141,11 @@ def run_cell_8():
             Column('slb_isin', String),
             Column('company_name', String),
             
-            # SERIES FLAGS (Replaces 'active_series' string)
-            Column('is_eq', Boolean, default=False), # Equity
-            Column('is_be', Boolean, default=False), # Book Entry
-            Column('is_bl', Boolean, default=False), # Block Deal
-            Column('is_bz', Boolean, default=False), # Trade to Trade
+            # SERIES FLAGS
+            Column('is_eq', Boolean, default=False),
+            Column('is_be', Boolean, default=False),
+            Column('is_bl', Boolean, default=False),
+            Column('is_bz', Boolean, default=False),
             
             # Trading Info
             Column('token_nse', String),
@@ -1143,13 +1180,35 @@ def run_cell_8():
         stock_indices_map = Table(
             'stock_indices_map', metadata,
             Column('id', Integer, primary_key=True, autoincrement=True),
-            Column('stock_symbol', String, ForeignKey('stocks_master.symbol', ondelete="CASCADE")),
+            Column('stock_id', Integer, ForeignKey('stocks.id', ondelete="CASCADE")),
             Column('index_id', Integer, ForeignKey('indices.id', ondelete="CASCADE")),
-            UniqueConstraint('stock_symbol', 'index_id', name='uq_stock_index_pair')
+            UniqueConstraint('stock_id', 'index_id', name='uq_stock_index_pair')
+        )
+
+        # --- TABLE: SYSTEM_LOGS ---
+        system_logs = Table(
+            'system_logs', metadata,
+            Column('id', BigInteger, primary_key=True, autoincrement=True),
+            Column('timestamp', DateTime, default=datetime.datetime.utcnow),
+            Column('level', String(10), index=True),   # INFO, ERROR, WARN
+            Column('source', String(50), index=True),  # e.g., "cron", "api", "angel_one"
+            Column('event', String(50)),               # e.g., "seed_start", "stock_processed"
+            Column('message', Text),
+            Column('context', JSON)                    # Flexible JSON for metadata
         )
         
+        # Safety Net & Schema Validation
+        # Check if table exists but has wrong schema (missing stock_id)
+        inspector = inspect(engine)
+        if inspector.has_table("stock_indices_map"):
+            columns = [c['name'] for c in inspector.get_columns("stock_indices_map")]
+            if "stock_id" not in columns:
+                log_message("⚠️ Detected incompatible schema for 'stock_indices_map'. Dropping table to recreate...")
+                with engine.begin() as conn:
+                    conn.execute(text("DROP TABLE stock_indices_map CASCADE"))
+        
         metadata.create_all(engine)
-        log_message("✅ Database Schema (stocks_master, stock_indices_map) Created.")
+        log_message("✅ Database Schema (stocks, stock_indices_map) Verified.")
         return stocks_table, stock_indices_map
 
     # ==========================================
@@ -1290,8 +1349,34 @@ def run_cell_8():
                         )
                         conn.execute(update_stmt)
                     
-                    # 2. Bulk Insert Relations
+                    # 2. Fetch Stock ID Map (Symbol -> ID)
+                    stock_id_map = {}
+                    result = conn.execute(text("SELECT symbol, id FROM stocks"))
+                    for row in result:
+                        stock_id_map[row[0]] = row[1]
+                    
+                    # 3. Prepare Relations with IDs
+                    relation_records_batch = []
+                    for item in stock_list:
+                        stock_symbol = item.get("master_key")
+                        stock_id = stock_id_map.get(stock_symbol)
+                        if not stock_id: continue
+                        
+                        stock_indices = item.get("relations", {}).get("indices", [])
+                        for index_name in stock_indices:
+                            idx_id = index_map.get(index_name.upper())
+                            if idx_id:
+                                rel_record = {
+                                    "stock_id": stock_id,
+                                    "index_id": idx_id
+                                }
+                                relation_records_batch.append(rel_record)
+
+                    # 4. Clear Old Relations & Bulk Insert New
                     if relation_records_batch:
+                        log_message(f"🧹 [{name.upper()}] Clearing old relations...")
+                        conn.execute(text("DELETE FROM stock_indices_map")) # Full clear for fresh state
+                        
                         log_message(f"⚡ [{name.upper()}] Executing Batch Insert for {len(relation_records_batch)} relations...")
                         rel_stmt = insert(relations_table).values(relation_records_batch)
                         rel_update = rel_stmt.on_conflict_do_nothing()
@@ -1309,7 +1394,12 @@ app = FastAPI(title="Migration API", description="API for seeding stock data fro
 @app.on_event("startup")
 def startup_event():
     # Initialize DB Connection on startup
-    run_cell_1()
+    engines = run_cell_1()
+    
+    # Initialize Logging DB (Neon preferred)
+    target_engine = engines.get("neon") or engines.get("local")
+    if target_engine:
+        init_logging_db(target_engine)
 
 @app.get("/")
 def read_root():
@@ -1359,6 +1449,75 @@ def seed_stocks_quick_update(background_tasks: BackgroundTasks):
 
     background_tasks.add_task(quick_pipeline)
     return {"status": "accepted", "message": "Quick update (DB Seed) started in background"}
+
+@app.delete("/clean/indices")
+def clean_indices():
+    """Truncates the 'indices' table."""
+    results = {}
+    for name, engine in engines.items():
+        if engine is None: continue
+        try:
+            with engine.begin() as conn:
+                conn.execute(text("TRUNCATE TABLE indices CASCADE"))
+            results[name] = "Success"
+        except Exception as e:
+            results[name] = str(e)
+    return {"status": "completed", "results": results}
+
+@app.delete("/clean/stocks")
+def clean_stocks():
+    """Truncates 'stocks' and 'stock_indices_map' tables."""
+    results = {}
+    for name, engine in engines.items():
+        if engine is None: continue
+        try:
+            with engine.begin() as conn:
+                conn.execute(text("TRUNCATE TABLE stocks CASCADE"))
+            results[name] = "Success"
+        except Exception as e:
+            results[name] = str(e)
+    return {"status": "completed", "results": results}
+
+@app.delete("/clean/stock-indices-map")
+def clean_map():
+    """Truncates 'stock_indices_map' table."""
+    results = {}
+    for name, engine in engines.items():
+        if engine is None: continue
+        try:
+            with engine.begin() as conn:
+                conn.execute(text("TRUNCATE TABLE stock_indices_map CASCADE"))
+            results[name] = "Success"
+        except Exception as e:
+            results[name] = str(e)
+    return {"status": "completed", "results": results}
+
+@app.delete("/clean/all")
+def clean_all(delete_all_tables: bool = False):
+    """
+    Cleans all 3 tables: indices, stocks, stock_indices_map.
+    If delete_all_tables=True, DROPS the tables.
+    If False (default), TRUNCATES them.
+    """
+    results = {}
+    for name, engine in engines.items():
+        if engine is None: continue
+        try:
+            with engine.begin() as conn:
+                if delete_all_tables:
+                    conn.execute(text("DROP TABLE IF EXISTS stock_indices_map CASCADE"))
+                    conn.execute(text("DROP TABLE IF EXISTS stocks CASCADE"))
+                    conn.execute(text("DROP TABLE IF EXISTS indices CASCADE"))
+                    action = "Dropped"
+                else:
+                    conn.execute(text("TRUNCATE TABLE stock_indices_map CASCADE"))
+                    conn.execute(text("TRUNCATE TABLE stocks CASCADE"))
+                    conn.execute(text("TRUNCATE TABLE indices CASCADE"))
+                    action = "Truncated"
+            results[name] = f"{action} Success"
+        except Exception as e:
+            results[name] = str(e)
+    return {"status": "completed", "results": results}
 
 @app.delete("/cleanup")
 def cleanup_endpoint():

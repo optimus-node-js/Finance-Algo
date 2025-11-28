@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+requests
+pandas==2.2.2
+numpy
+pyotp
+smartapi-python
+tqdm
+logzero
+websocket-client

@@ -21,9 +21,9 @@
             "nearWKH": null,
             "nearWKL": null,
             "perChange365d": 6.91,
-            "perChange30d": 14.17,
-            "date365dAgo": "22-Nov-2024",
-            "date30dAgo": "24-Oct-2025"
+            "perChange30d": 5.45,
+            "date365dAgo": "26-Nov-2024",
+            "date30dAgo": "27-Oct-2025"
         }
     ],
     "metadata": {
@@ -35,14 +35,14 @@
         "last": 249.14,
         "percChange": 0,
         "change": 0,
-        "timeVal": "25-Nov-2025 21:00:30",
+        "timeVal": "28-Nov-2025 19:57:30",
         "yearHigh": 0,
         "yearLow": 0,
         "indicativeClose": 0,
         "perChange365d": 6.91,
-        "perChange30d": 14.17,
-        "date365dAgo": "22-Nov-2024",
-        "date30dAgo": "24-Oct-2025",
+        "perChange30d": 5.45,
+        "date365dAgo": "26-Nov-2024",
+        "date30dAgo": "27-Oct-2025",
         "chartTodayPath": "https://nsearchives.nseindia.com/today/NIFTY50-DIV-POINT.svg",
         "chart30dPath": "https://nsearchives.nseindia.com/30d/NIFTY50-DIV-POINT.svg",
         "chart365dPath": "https://nsearchives.nseindia.com/365d/NIFTY50-DIV-POINT.svg",
@@ -52,12 +52,12 @@
     },
     "marketStatus": {
         "market": "Capital Market",
-        "marketStatus": "Closed",
-        "tradeDate": "25-Nov-2025 15:30",
+        "marketStatus": "Open",
+        "tradeDate": "28-Nov-2025 14:27",
         "index": "NIFTY 50",
-        "last": 25884.8,
-        "variation": -74.70000000000073,
-        "percentChange": -0.29,
-        "marketStatusMessage": "Normal Market is Closed"
+        "last": 26202.7,
+        "variation": -12.849999999998545,
+        "percentChange": -0.05,
+        "marketStatusMessage": "Normal Market is Open"
     }
 }

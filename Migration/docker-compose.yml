@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  finance-app:
+    build: .
+    image: finance-data-seeder:latest
+    container_name: finance-app-container
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=host.docker.internal
+      - VERCEL=  # Ensure we don't accidentally trigger Vercel logic
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: always
