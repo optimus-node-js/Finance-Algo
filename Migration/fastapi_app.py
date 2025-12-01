@@ -20,10 +20,18 @@ from SmartApi import SmartConnect
 # Changing tqdm.notebook to tqdm for script compatibility
 from tqdm import tqdm 
 from fastapi import FastAPI, HTTPException, BackgroundTasks
+from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 
 # --- GLOBAL LOGGING SETUP ---
-LOG_DIR = 'logs'
+# --- GLOBAL LOGGING SETUP ---
+if os.environ.get("VERCEL"):
+    LOG_DIR = '/tmp/logs'
+    DATA_DIR = '/tmp/data'
+else:
+    LOG_DIR = 'logs'
+    DATA_DIR = 'data'
+
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 logger = logging.getLogger()
 
@@ -183,7 +191,7 @@ def run_cell_2():
     log_message("Setup Complete. Uncomment the initialization line above after filling credentials.")
 
 # --- CELL 3: Fetch NSE Official CSV & Initialize Master Skeleton ---
-def run_cell_3():
+def run_cell_3(create_json_files=True):
     # CELL 3: Fetch NSE Official CSV & Initialize Master Skeleton (Strict Raw Mode)
     
     # ==========================================
@@ -192,7 +200,7 @@ def run_cell_3():
     # Official NSE Equity List
     NSE_CSV_URL = "https://nsearchives.nseindia.com/content/equities/EQUITY_L.csv"
 
-    DATA_DIR = 'data'
+    # DATA_DIR is now global
     OUTPUT_FILE = os.path.join(DATA_DIR, 'NSE_STOCKS_SKELETON.json')
 
     if not os.path.exists(DATA_DIR):
@@ -340,30 +348,31 @@ def run_cell_3():
             data = build_master_skeleton(df)
             
             # Save to JSON
-            with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
-                json.dump(data, f, indent=4)
-                
-            log_message(f"\\n" + "="*50)
-            log_message(f"🎉 SKELETON CREATED: {OUTPUT_FILE}")
+            if create_json_files:
+                with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:
+                    json.dump(data, f, indent=4)
+                log_message(f"🎉 SKELETON CREATED: {OUTPUT_FILE}")
+            else:
+                log_message(f"🎉 SKELETON CREATED (In-Memory)")
             log_message(f"🔹 Total Items in File : {len(data)}")
             log_message("="*50)
+            return data
+        return []
 
-    main()
+    return main()
 
 # --- CELL 4: NSE Indices List Fetcher ---
-def run_cell_4():
+def run_cell_4(create_json_files=True):
     # CELL 4: NSE Indices List Fetcher (JSON + Postgres + Schema Reset)
     # DEPENDENCY: Requires Cell 1 (Database Connection) to be run first.
 
     # ==========================================
     # 1. CONFIGURATION & TOGGLES
     # ==========================================
-    STORE_IN_JSON = True       
+    STORE_IN_JSON = create_json_files       
     STORE_IN_POSTGRES = True   
 
-    # File Config
-    DATA_DIR = 'data'
-    LOG_DIR = 'logs'
+    # File Config (Using Global DATA_DIR and LOG_DIR)
     OUTPUT_FILE = os.path.join(DATA_DIR, 'NSE_Indices_List.json')
 
     if not os.path.exists(DATA_DIR): os.makedirs(DATA_DIR)
@@ -502,46 +511,42 @@ def run_cell_4():
         session = requests.Session()
         session.headers.update(HEADERS)
         
-        # RETRY LOGIC
-        max_retries = 3
-        for attempt in range(max_retries):
-            try:
-                if attempt > 0:
-                    log_message(f"🔄 Retry {attempt+1}/{max_retries}...")
-                    time.sleep(random.uniform(2, 5))
-
-                log_message(f"🌐 Fetching Home: {URL_HOME}")
-                response_home = session.get(URL_HOME, timeout=15)
-                if response_home.status_code != 200: 
-                    continue
+        try:
+            log_message(f"🌐 Fetching Home: {URL_HOME}")
+            response_home = session.get(URL_HOME, timeout=15)
+            if response_home.status_code != 200: 
+                log_message(f"⚠️ Home Page Failed: {response_home.status_code}")
+                return None
+            
+            time.sleep(random.uniform(2, 4))
+            
+            log_message(f"🌐 Fetching Indices API: {URL_API}")
+            response_api = session.get(URL_API, timeout=15)
+            if response_api.status_code == 200:
+                raw_data = response_api.json()
+                if isinstance(raw_data, dict) and "data" in raw_data: data_list = raw_data["data"]
+                elif isinstance(raw_data, list): data_list = raw_data
+                else: return None
                 
-                time.sleep(random.uniform(2, 4))
-                
-                log_message(f"🌐 Fetching Indices API: {URL_API}")
-                response_api = session.get(URL_API, timeout=15)
-                if response_api.status_code == 200:
-                    raw_data = response_api.json()
-                    if isinstance(raw_data, dict) and "data" in raw_data: data_list = raw_data["data"]
-                    elif isinstance(raw_data, list): data_list = raw_data
-                    else: return None
-                    
-                    processed_list = []
-                    rename_map = {"pe": "Price-to-Earnings-ratio", "pb": "Price-to-Book-ratio", "dy": "Dividend-Yield"}
-                    keys_to_remove = ["chartTodayPath", "chart30dPath", "chart365dPath"]
+                processed_list = []
+                rename_map = {"pe": "Price-to-Earnings-ratio", "pb": "Price-to-Book-ratio", "dy": "Dividend-Yield"}
+                keys_to_remove = ["chartTodayPath", "chart30dPath", "chart365dPath"]
 
-                    for item in data_list:
-                        if not isinstance(item, dict): continue 
-                        category_key = item.get("key", "").upper()
-                        item["isDerivativesEligible"] = "INDICES ELIGIBLE IN DERIVATIVES" in category_key
-                        for k in keys_to_remove: item.pop(k, None)
-                        for old_key, new_key in rename_map.items():
-                            if old_key in item: item[new_key] = item.pop(old_key)
-                        processed_list.append(item)
-                    return processed_list
-            except Exception as e:
-                log_message(f"❌ Exception (Attempt {attempt+1}): {str(e)}")
-        
-        return None
+                for item in data_list:
+                    if not isinstance(item, dict): continue 
+                    category_key = item.get("key", "").upper()
+                    item["isDerivativesEligible"] = "INDICES ELIGIBLE IN DERIVATIVES" in category_key
+                    for k in keys_to_remove: item.pop(k, None)
+                    for old_key, new_key in rename_map.items():
+                        if old_key in item: item[new_key] = item.pop(old_key)
+                    processed_list.append(item)
+                return processed_list
+            else:
+                log_message(f"⚠️ API Failed: {response_api.status_code}")
+                return None
+        except Exception as e:
+            log_message(f"❌ Exception: {str(e)}")
+            return None
 
     def main():
         data = fetch_indices_manual()
@@ -551,22 +556,25 @@ def run_cell_4():
                 log_message(f"✅ Saved JSON: {OUTPUT_FILE}")
             if STORE_IN_POSTGRES:
                 save_to_postgres(data)
+            return data
         else:
             log_message("❌ FAILURE: Could not fetch data.")
             # FALLBACK: Ensure table exists so downstream cells don't crash
             if STORE_IN_POSTGRES:
                 ensure_table_exists()
+            return []
 
-    main()
+    return main()
 
 # --- CELL 5: High-Speed Concurrent NSE Index Fetcher ---
-def run_cell_5():
+def run_cell_5(create_json_files=True, input_data=None):
     # CELL 5: High-Speed Concurrent NSE Index Fetcher
     
     # ==========================================
     # 1. CONFIGURATION
     # ==========================================
-    OUTPUT_DIR = 'data/indices'
+    # Use global DATA_DIR
+    OUTPUT_DIR = os.path.join(DATA_DIR, 'indices')
     # LOG_FILE = 'logs/fast_fetch.log' # Using global logger
 
     # CONCURRENCY SETTINGS
@@ -575,7 +583,7 @@ def run_cell_5():
     MAX_WORKERS = 4 
 
     if not os.path.exists(OUTPUT_DIR): os.makedirs(OUTPUT_DIR)
-    if not os.path.exists('logs'): os.makedirs('logs')
+    if not os.path.exists(LOG_DIR): os.makedirs(LOG_DIR)
 
     # Headers (Mimicking Chrome)
     HEADERS = {
@@ -592,7 +600,6 @@ def run_cell_5():
     }
 
     URL_HOME = "https://www.nseindia.com"
-    URL_MASTER_LIST = "https://www.nseindia.com/api/allIndices"
     URL_DETAILS_API = "https://www.nseindia.com/api/equity-stockIndices"
 
     # ==========================================
@@ -619,209 +626,167 @@ def run_cell_5():
     # 3. WORKER FUNCTION (The "Engine")
     # ==========================================
     def fetch_and_save_index(index_name):
-        """
-        This function runs inside each thread.
-        1. Fetches data for one index.
-        2. Cleans charts.
-        3. Saves to JSON.
-        """
-        safe_filename = index_name.replace(" ", "_").replace("/", "-")
-        file_path = os.path.join(OUTPUT_DIR, f"{safe_filename}.json")
-        
-        params = {"index": index_name}
+        # safe_name = index_name.replace(' ', '_') # No longer needed here
+        url = f"{URL_DETAILS_API}?index={index_name.replace(' ', '%20').replace('&', '%26')}"
         
         try:
-            # Random tiny sleep to jitter the threads so they don't hit exact same millisecond
+            # Random delay to be human-like
             time.sleep(random.uniform(0.5, 1.5))
             
-            # log_message(f"🌐 Fetching Index Details: {index_name} from {URL_DETAILS_API}") # Too verbose?
-            response = session.get(URL_DETAILS_API, params=params, timeout=15)
-            
+            response = session.get(url, timeout=10)
             if response.status_code == 200:
                 data = response.json()
-                
-                # --- CLEANING LOGIC ---
-                # 1. Remove top-level charts if they exist
-                keys_to_remove = ["chartTodayPath", "chart30dPath", "chart365dPath"]
-                for k in keys_to_remove:
-                    data.pop(k, None)
-                    
-                # 2. Remove charts from the specific "data" list items if they exist there
-                if "data" in data and isinstance(data["data"], list):
-                    for stock in data["data"]:
-                        if isinstance(stock, dict):
-                            for k in keys_to_remove:
-                                stock.pop(k, None)
-
-                # --- SAVING ---
-                with open(file_path, 'w', encoding='utf-8') as f:
-                    json.dump(data, f, indent=4)
-                    
-                return {"status": "success", "index": index_name}
-                
-            elif response.status_code == 401:
-                return {"status": "retry", "index": index_name}
+                # Return data for in-memory use with ORIGINAL name as key
+                return {index_name: data}
             else:
-                return {"status": "error", "index": index_name, "code": response.status_code}
-                
+                log_message(f"⚠️ Failed {index_name}: {response.status_code}")
         except Exception as e:
-            return {"status": "error", "index": index_name, "msg": str(e)}
+            log_message(f"❌ Error {index_name}: {e}")
+        return None
 
     # ==========================================
     # 4. MAIN ORCHESTRATOR
     # ==========================================
     def main():
-        log_message(f"🚀 Starting High-Speed Concurrent Fetcher...")
-        
-        # --- Phase 1: Get Master List (In-Memory) ---
-        log_message(f"🍪 Initializing Session & Fetching Master List...")
         if not init_session():
-            log_message("❌ Failed to initialize session. Check internet/IP.")
-            return
+            log_message("❌ CRITICAL: Could not initialize NSE Session. Aborting.")
+            return {}
 
-        try:
-            log_message(f"🌐 Fetching Master List from: {URL_MASTER_LIST}")
-            res = session.get(URL_MASTER_LIST, timeout=15)
-            raw_data = res.json()
-            
-            # Unwrap data if inside "data" key
-            if isinstance(raw_data, dict) and "data" in raw_data:
-                master_list = raw_data["data"]
+        indices_list = []
+        # Get list of indices from input or file
+        if input_data:
+            indices_list = input_data
+            log_message(f"🔹 Using {len(indices_list)} indices from memory.")
+        else:
+            indices_file = os.path.join(DATA_DIR, 'NSE_Indices_List.json')
+            if os.path.exists(indices_file):
+                with open(indices_file, 'r') as f:
+                    indices_list = json.load(f)
             else:
-                master_list = raw_data
-                
-            # Extract just the Index Names (Symbols)
-            # logic: prefer 'indexSymbol', fallback to 'index', then 'key'
-            index_names = []
-            for item in master_list:
-                name = item.get("indexSymbol") or item.get("index") or item.get("key")
-                if name:
-                    index_names.append(name)
-            
-            # Unique names only
-            index_names = list(set(index_names))
-            log_message(f"✅ Master List Fetched. Found {len(index_names)} indices.")
-            
-        except Exception as e:
-            log_message(f"❌ Failed to fetch Master List: {e}")
-            return
-
-        # --- Phase 2: Concurrent Fetching ---
-        log_message(f"⚡ Starting Parallel Fetch (Workers: {MAX_WORKERS})...")
+                 log_message("❌ Indices list not found. Run Cell 4 first.")
+                 return {}
+             
+        target_indices = [item['index'] for item in indices_list if item.get('index')]
         
-        results_log = {"success": 0, "retry": 0, "error": 0}
+        log_message(f"🚀 Starting Concurrent Fetch for {len(target_indices)} indices...")
         
-        # ThreadPoolExecutor manages the pool of worker threads
+        results_data = {}
+        
         with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
-            # Submit all tasks
-            future_to_index = {executor.submit(fetch_and_save_index, name): name for name in index_names}
+            future_to_index = {executor.submit(fetch_and_save_index, idx): idx for idx in target_indices}
             
-            # Process as they complete (using tqdm for progress bar)
-            for future in tqdm(concurrent.futures.as_completed(future_to_index), total=len(index_names), desc="Fetching"):
+            for future in tqdm(concurrent.futures.as_completed(future_to_index), total=len(target_indices), desc="Fetching Indices"):
                 result = future.result()
-                status = result["status"]
-                
-                if status == "success":
-                    results_log["success"] += 1
-                elif status == "retry":
-                    # If 401, we might need to re-queue or just log (Simple version: Log it)
-                    # Implementing re-queue in concurrency is complex, usually just re-run script for missed ones
-                    results_log["retry"] += 1
-                else:
-                    results_log["error"] += 1
+                if result:
+                    results_data.update(result)
+        
+        # Save to Disk if requested
+        if create_json_files:
+            for index_name, data in results_data.items():
+                # Sanitize filename for Windows (replace : and space)
+                safe_name = index_name.replace(' ', '_').replace(':', '_')
+                file_path = os.path.join(OUTPUT_DIR, f"{safe_name}.json")
+                with open(file_path, 'w', encoding='utf-8') as f:
+                    json.dump(data, f, indent=4)
+            log_message(f"✅ Saved {len(results_data)} index files to {OUTPUT_DIR}")
+        else:
+            log_message(f"✅ Fetched {len(results_data)} indices (In-Memory)")
 
-        log_message("\\n" + "="*40)
-        log_message(f"🏁 FINAL REPORT")
-        log_message(f"✅ Success: {results_log['success']}")
-        log_message(f"⚠️ Failed/Auth Error: {results_log['retry']}")
-        log_message(f"❌ Errors: {results_log['error']}")
-        log_message(f"📂 Data saved to: {OUTPUT_DIR}/")
-        log_message("="*40)
+        return results_data
 
-    main()
+    return main()
 
 # --- CELL 6: The Local Enricher ---
-def run_cell_6():
+def run_cell_6(create_json_files=True, input_data=None, indices_data=None):
     # CELL 6: The Local Enricher (In-Place Update of Master JSON)
     
     # ==========================================
     # 1. CONFIGURATION
     # ==========================================
     # We read AND write to the same file to keep it as the Single Source of Truth
-    MASTER_FILE = 'data/NSE_STOCKS_SKELETON.json'
-    INDICES_DIR = 'data/indices'
+    MASTER_FILE = os.path.join(DATA_DIR, 'NSE_STOCKS_SKELETON.json')
+    INDICES_DIR = os.path.join(DATA_DIR, 'indices')
 
     # ==========================================
     # 2. BUILD LOOKUP MAP (The "Reverse Index")
     # ==========================================
     def build_indices_lookup():
-        log_message(f"📖 Scanning Index files to build Lookup Map...")
+        log_message(f"📖 Scanning Index Data to build Lookup Map...")
         
         # Map: Symbol -> { "meta": ..., "indices": [list of index names], "web_data": ... }
         lookup_map = defaultdict(lambda: {"meta": None, "indices": []})
         
-        if not os.path.exists(INDICES_DIR):
-            log_message(f"❌ Error: {INDICES_DIR} directory not found.")
+        # SOURCE 1: In-Memory Data (Preferred)
+        if indices_data:
+            source_items = indices_data.items()
+            log_message(f"🔹 Using {len(source_items)} indices from memory.")
+        # SOURCE 2: File System (Fallback)
+        elif os.path.exists(INDICES_DIR):
+            files = [f for f in os.listdir(INDICES_DIR) if f.endswith('.json')]
+            source_items = []
+            for filename in tqdm(files, desc="Scanning Files"):
+                index_name = filename.replace('.json', '').replace('_', ' ')
+                file_path = os.path.join(INDICES_DIR, filename)
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        content = json.load(f)
+                    source_items.append((index_name, content))
+                except Exception:
+                    continue
+        else:
+            log_message(f"❌ Error: No indices data found (Memory or Disk).")
             return {}
 
-        files = [f for f in os.listdir(INDICES_DIR) if f.endswith('.json')]
-        
-        for filename in tqdm(files, desc="Scanning Indices"):
-            index_name = filename.replace('.json', '').replace('_', ' ')
-            file_path = os.path.join(INDICES_DIR, filename)
-            
-            try:
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    content = json.load(f)
-                    
-                # Handle Wrapper
-                if isinstance(content, dict) and "data" in content:
-                    stock_list = content["data"]
-                elif isinstance(content, list):
-                    stock_list = content
-                else:
-                    continue
+        # Process the data (Common Logic)
+        for index_name, content in source_items:
+            # Handle Wrapper
+            if isinstance(content, dict) and "data" in content:
+                stock_list = content["data"]
+            elif isinstance(content, list):
+                stock_list = content
+            else:
+                continue
 
-                for stock in stock_list:
-                    if not isinstance(stock, dict): continue
-                    
-                    symbol = stock.get("symbol")
-                    if not symbol: continue
-                    
-                    # Link Stock to Index
-                    lookup_map[symbol]["indices"].append(index_name)
-                    
-                    # Capture the richest metadata
-                    # We prioritize metadata that has "industry" info
-                    new_meta = stock.get("meta")
-                    current_meta = lookup_map[symbol]["meta"]
-                    
-                    if new_meta:
-                        if current_meta is None:
-                            # First time seeing meta, grab it
-                            lookup_map[symbol]["web_data"] = stock
-                            lookup_map[symbol]["meta"] = new_meta
-                        elif new_meta.get("industry") and not current_meta.get("industry"):
-                            # Found better meta with industry, upgrade
-                            lookup_map[symbol]["web_data"] = stock
-                            lookup_map[symbol]["meta"] = new_meta
-
-            except Exception as e:
-                log_message(f"❌ Error reading {filename}: {e}")
+            for stock in stock_list:
+                if not isinstance(stock, dict): continue
                 
+                symbol = stock.get("symbol")
+                if not symbol: continue
+                
+                # Link Stock to Index
+                lookup_map[symbol]["indices"].append(index_name)
+                
+                # Capture the richest metadata
+                new_meta = stock.get("meta")
+                current_meta = lookup_map[symbol]["meta"]
+                
+                if new_meta:
+                    if current_meta is None:
+                        lookup_map[symbol]["web_data"] = stock
+                        lookup_map[symbol]["meta"] = new_meta
+                    elif new_meta.get("industry") and not current_meta.get("industry"):
+                        lookup_map[symbol]["web_data"] = stock
+                        lookup_map[symbol]["meta"] = new_meta
+
         return lookup_map
 
     # ==========================================
     # 3. UPDATE MASTER JSON IN-PLACE
     # ==========================================
     def update_master_file(lookup_map):
-        if not os.path.exists(MASTER_FILE):
-            log_message(f"❌ Error: {MASTER_FILE} not found. Run Cell 3 first.")
-            return
-
-        log_message(f"🔄 Loading Master JSON...")
-        with open(MASTER_FILE, 'r', encoding='utf-8') as f:
-            master_list = json.load(f)
+        master_list = []
+        
+        # 1. Load Data (Input or File)
+        if input_data:
+            master_list = input_data
+            log_message(f"🔄 Loaded {len(master_list)} stocks from memory.")
+        elif os.path.exists(MASTER_FILE):
+            log_message(f"🔄 Loading Master JSON from {MASTER_FILE}...")
+            with open(MASTER_FILE, 'r', encoding='utf-8') as f:
+                master_list = json.load(f)
+        else:
+            log_message(f"❌ Error: No input data and {MASTER_FILE} not found.")
+            return []
 
         log_message(f"⚡ Enriching fields...")
         enriched_count = 0
@@ -851,55 +816,58 @@ def run_cell_6():
                     stock_obj["identifiers"]["active_series"] = meta.get("activeSeries")
 
                 # --- 4. UPDATE FLAGS ---
-                # We use .get(key, False) to ensure it defaults to False if missing
                 stock_obj["flags"]["is_fno"] = meta.get("isFNOSec", False)
                 stock_obj["flags"]["is_etf"] = meta.get("isETFSec", False)
                 stock_obj["flags"]["is_slb_eligible"] = meta.get("isSLBSec", False)
                 stock_obj["flags"]["is_suspended"] = meta.get("isSuspended", False)
                 stock_obj["flags"]["is_delisted"] = meta.get("isDelisted", False)
                 stock_obj["flags"]["is_municipal_bond"] = meta.get("isMunicipalBond", False)
-                stock_obj["flags"]["is_mtf_eligible"] = False # Placeholder, Angel API will fill this later
+                stock_obj["flags"]["is_mtf_eligible"] = False 
                 
-                # --- 5. ADD RELATIONS (New Field) ---
-                # This helps us query "Get all Nifty 50 stocks" later
+                # --- 5. ADD RELATIONS ---
                 stock_obj["relations"] = {
                     "indices": indices_list
                 }
                 
                 enriched_count += 1
             else:
-                # If stock not in any index, just add empty relations for consistency
                 stock_obj["relations"] = {"indices": []}
 
         # --- SAVE BACK TO SAME FILE ---
-        log_message(f"💾 Saving updates to {MASTER_FILE}...")
-        with open(MASTER_FILE, 'w', encoding='utf-8') as f:
-            json.dump(master_list, f, indent=4)
+        if create_json_files:
+            log_message(f"💾 Saving updates to {MASTER_FILE}...")
+            with open(MASTER_FILE, 'w', encoding='utf-8') as f:
+                json.dump(master_list, f, indent=4)
+            log_message(f"🔹 File Updated: {MASTER_FILE}")
+        else:
+            log_message(f"💾 Updates applied in-memory.")
 
         log_message(f"\\n" + "="*50)
         log_message(f"✅ UPDATE COMPLETE")
-        log_message(f"🔹 File Updated: {MASTER_FILE}")
         log_message(f"🔹 Stocks Enriched: {enriched_count}/{len(master_list)}")
         log_message("="*50)
+        
+        return master_list
 
     # ==========================================
     # 4. EXECUTION
     # ==========================================
     lookup_map = build_indices_lookup()
     if lookup_map:
-        update_master_file(lookup_map)
+        return update_master_file(lookup_map)
+    return []
 
 # --- CELL 7: The Token Hunter ---
-def run_cell_7():
+def run_cell_7(create_json_files=True, input_data=None):
     # CELL 7: The Token Hunter (Final Fixed Headers & Logic)
     
     # ==========================================
     # 1. CONFIGURATION
     # ==========================================
-    JSON_PATH = 'data/NSE_STOCKS_SKELETON.json'
-    LOG_DIR = 'logs'
+    # File Config (Using Global DATA_DIR and LOG_DIR)
+    JSON_PATH = os.path.join(DATA_DIR, 'NSE_STOCKS_SKELETON.json')
     SEARCH_URL = "https://global-search-bbe-prod.angelone.in/v5/search"
-    MAX_WORKERS = 10 
+    MAX_WORKERS = 5 # Reduced from 10 to avoid rate limits/timeouts 
 
     if not os.path.exists(LOG_DIR): os.makedirs(LOG_DIR)
 
@@ -955,8 +923,34 @@ def run_cell_7():
         cleaned = re.sub(r'\s+\([^)]*\)', '', cleaned)
         return cleaned.strip()
 
-    def perform_search(keyword):
-        """Hits Angel API."""
+    def bulk_log_to_db(logs_list):
+        """Inserts multiple logs into the DB in one transaction."""
+        if not logs_list: return
+        
+        engine = engines.get("neon") or engines.get("local")
+        if not engine: return
+
+        try:
+            # Prepare data for bulk insert
+            records = [
+                {
+                    "level": l["level"],
+                    "source": l["source"],
+                    "event": l["event"],
+                    "message": l["message"],
+                    "context": l["context"] or {}
+                }
+                for l in logs_list
+            ]
+            
+            stmt = insert(Table('system_logs', MetaData(), autoload_with=engine))
+            with engine.begin() as conn:
+                conn.execute(stmt, records)
+        except Exception as e:
+            log_message(f"⚠️ Bulk DB Log Failed: {e}")
+
+    def perform_search(keyword, log_buffer=None):
+        """Hits Angel API. Logs are appended to log_buffer if provided."""
         session = get_session()
         # Check if user updated the cookie
         if "YOUR_HUGE_COOKIE" in session.headers['Cookie']:
@@ -974,9 +968,15 @@ def run_cell_7():
         }
         
         try:
-            # Log to DB instead of Console/File to reduce noise
-            log_to_db("INFO", "angel_api", "search", f"Searching: {keyword}", 
-                      context={"url": SEARCH_URL, "keyword": keyword})
+            # BUFFER LOGS instead of writing directly
+            if log_buffer is not None:
+                log_buffer.append({
+                    "level": "INFO",
+                    "source": "angel_api",
+                    "event": "search",
+                    "message": f"Searching: {keyword}",
+                    "context": {"url": SEARCH_URL, "keyword": keyword}
+                })
             
             response = session.get(SEARCH_URL, headers=headers, params=params, timeout=5)
             if response.status_code == 200:
@@ -1008,15 +1008,17 @@ def run_cell_7():
         return None
 
     def fetch_and_enrich_stock(stock_obj):
+        local_logs = [] # Capture logs for this thread
+        
         # Skip if already done
         if stock_obj["trading_info"].get("token_nse") and stock_obj["__RAW_DATA_SOURCES__"].get("source_angel_api"):
-            return stock_obj
+            return stock_obj, local_logs
 
         identifiers = stock_obj.get("identifiers", {})
         symbol = identifiers.get("symbol")
         company_name = identifiers.get("company_name", "").strip()
         
-        if not symbol or not company_name: return stock_obj
+        if not symbol or not company_name: return stock_obj, local_logs
 
         match = None
         tried_queries = []
@@ -1024,14 +1026,14 @@ def run_cell_7():
         # --- 1. Search by Symbol ---
         search_query = symbol
         tried_queries.append(search_query)
-        results = perform_search(search_query)
+        results = perform_search(search_query, log_buffer=local_logs)
         match = parse_best_match(results, search_symbol=symbol)
 
         # --- 2. Search by FULL Company Name (Browser Style) ---
         if not match:
             search_query = company_name
             tried_queries.append(search_query)
-            results = perform_search(search_query)
+            results = perform_search(search_query, log_buffer=local_logs)
             match = parse_best_match(results, search_symbol=symbol)
 
         # --- 3. Search by Clean Name ---
@@ -1040,7 +1042,7 @@ def run_cell_7():
             if cleaned_name != company_name:
                 search_query = cleaned_name
                 tried_queries.append(search_query)
-                results = perform_search(search_query)
+                results = perform_search(search_query, log_buffer=local_logs)
                 match = parse_best_match(results, search_symbol=symbol)
 
         # --- UPDATE ---
@@ -1062,58 +1064,81 @@ def run_cell_7():
         else:
             log_missing(company_name, tried_queries, "No match found")
 
-        return stock_obj
+        return stock_obj, local_logs
 
     # ==========================================
     # 4. EXECUTION
     # ==========================================
     def main():
-        if not os.path.exists(JSON_PATH):
-            log_message(f"❌ Error: {JSON_PATH} not found.")
-            return
+        master_list = []
+        
+        # 1. Load Data (Input or File)
+        if input_data:
+            master_list = input_data
+            log_message(f"🔄 Loaded {len(master_list)} stocks from memory.")
+        elif os.path.exists(JSON_PATH):
+            log_message(f"🔄 Loading Master JSON from {JSON_PATH}...")
+            with open(JSON_PATH, 'r', encoding='utf-8') as f:
+                master_list = json.load(f)
+        else:
+            log_message(f"❌ Error: No input data and {JSON_PATH} not found.")
+            return []
 
         # Clear logs
-        open(MISSING_LOG_PATH, 'w').close()
-
-        log_message(f"🔄 Loading Master JSON...")
-        with open(JSON_PATH, 'r', encoding='utf-8') as f:
-            master_list = json.load(f)
+        if create_json_files:
+            open(MISSING_LOG_PATH, 'w').close()
 
         pending = [s for s in master_list if not s["trading_info"].get("token_nse")]
         log_message(f"🕵️ Sweeping {len(pending)} missing stocks...")
         
         if len(pending) == 0:
             log_message("✅ No missing stocks to process!")
-            return
+            return master_list
 
         updated_list = []
-        # Using 5 workers to be gentle with the specific headers
-        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-            updated_list = list(tqdm(executor.map(fetch_and_enrich_stock, master_list), total=len(master_list)))
+        all_logs = []
+        
+        # Using workers
+        with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+            # Map returns (stock_obj, logs) tuples now
+            results = list(tqdm(executor.map(fetch_and_enrich_stock, master_list), total=len(master_list)))
+            
+            for stock, logs in results:
+                updated_list.append(stock)
+                all_logs.extend(logs)
+
+        # BULK LOGGING
+        if all_logs:
+            log_message(f"📝 Bulk inserting {len(all_logs)} API logs to DB...")
+            bulk_log_to_db(all_logs)
 
         success_count = sum(1 for s in updated_list if s["trading_info"].get("token_nse"))
 
-        log_message(f"💾 Saving...")
-        with open(JSON_PATH, 'w', encoding='utf-8') as f:
-            json.dump(updated_list, f, indent=4)
+        if create_json_files:
+            log_message(f"💾 Saving...")
+            with open(JSON_PATH, 'w', encoding='utf-8') as f:
+                json.dump(updated_list, f, indent=4)
+            log_message(f"🔹 Check logs at: {MISSING_LOG_PATH}")
 
         log_message(f"\\n" + "="*50)
         log_message(f"✅ COMPLETE")
         log_message(f"🔹 Total Tokens Found: {success_count}")
-        log_message(f"🔹 Check logs at: {MISSING_LOG_PATH}")
         log_message("="*50)
+        
+        return updated_list
 
-    main()
+    return main()
 
 # --- CELL 8: Stocks Master Seeder ---
-def run_cell_8():
+def run_cell_8(create_json_files=True, input_data=None):
     # CELL 8: Stocks Master Seeder (JSON -> Postgres)
     # DEPENDENCY: Requires Cell 1 (Engine) and Cell 4 (Indices Table Populated)
     
     # ==========================================
     # 1. CONFIGURATION
     # ==========================================
-    JSON_SOURCE = 'data/NSE_STOCKS_SKELETON.json'
+    # File Config (Using Global DATA_DIR)
+    JSON_SOURCE = os.path.join(DATA_DIR, 'NSE_STOCKS_SKELETON.json')
 
     # ==========================================
     # 2. SCHEMA DEFINITION
@@ -1215,13 +1240,17 @@ def run_cell_8():
     # 3. SEEDER LOGIC
     # ==========================================
     def seed_database():
-        if not os.path.exists(JSON_SOURCE):
-            log_message(f"❌ Error: {JSON_SOURCE} not found.")
+        stock_list = []
+        if input_data:
+            stock_list = input_data
+            log_message(f"📖 Loaded {len(stock_list)} stocks from memory.")
+        elif os.path.exists(JSON_SOURCE):
+            log_message(f"📖 Loading Master JSON from {JSON_SOURCE}...")
+            with open(JSON_SOURCE, 'r', encoding='utf-8') as f:
+                stock_list = json.load(f)
+        else:
+            log_message(f"❌ Error: No input data and {JSON_SOURCE} not found.")
             return
-
-        log_message(f"📖 Loading Master JSON...")
-        with open(JSON_SOURCE, 'r', encoding='utf-8') as f:
-            stock_list = json.load(f)
 
         for name, engine in engines.items():
             if engine is None:
@@ -1391,6 +1420,205 @@ def run_cell_8():
 # --- FASTAPI APP ---
 app = FastAPI(title="Migration API", description="API for seeding stock data from notebook logic")
 
+@app.get("/logs", response_class=HTMLResponse)
+def view_logs(limit: int = 200):
+    """Fetches latest system logs and renders them in a beautiful UI."""
+    engine = engines.get("neon") or engines.get("local")
+    if not engine:
+        return HTMLResponse("<h1>❌ No Database Connection Available</h1>", status_code=500)
+
+    try:
+        with engine.connect() as conn:
+            # Check if table exists first
+            inspector = inspect(engine)
+            if not inspector.has_table("system_logs"):
+                return HTMLResponse("<h1>⚠️ 'system_logs' table does not exist yet.</h1><p>Wait for server startup or run a search to generate logs.</p>")
+                
+            result = conn.execute(text("SELECT * FROM system_logs ORDER BY timestamp DESC LIMIT :limit"), {"limit": limit})
+            logs = result.fetchall()
+    except Exception as e:
+        return HTMLResponse(f"<h1>❌ Database Error</h1><p>{e}</p>", status_code=500)
+
+    # --- HTML TEMPLATE ---
+    html_content = f"""
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>System Logs | Finance Server</title>
+        <style>
+            :root {{
+                --bg-color: #0f172a;
+                --card-bg: #1e293b;
+                --text-primary: #f1f5f9;
+                --text-secondary: #94a3b8;
+                --border-color: #334155;
+                --accent: #3b82f6;
+                --success: #22c55e;
+                --warning: #eab308;
+                --error: #ef4444;
+            }}
+            body {{
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+                background-color: var(--bg-color);
+                color: var(--text-primary);
+                margin: 0;
+                padding: 20px;
+            }}
+            .container {{
+                max-width: 1400px;
+                margin: 0 auto;
+            }}
+            header {{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                padding-bottom: 20px;
+                border-bottom: 1px solid var(--border-color);
+            }}
+            h1 {{ margin: 0; font-size: 1.5rem; }}
+            .refresh-btn {{
+                background-color: var(--accent);
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-weight: 500;
+                text-decoration: none;
+                transition: opacity 0.2s;
+            }}
+            .refresh-btn:hover {{ opacity: 0.9; }}
+            
+            .table-container {{
+                background-color: var(--card-bg);
+                border-radius: 8px;
+                border: 1px solid var(--border-color);
+                overflow-x: auto;
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            }}
+            table {{
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 0.875rem;
+            }}
+            th, td {{
+                padding: 12px 16px;
+                text-align: left;
+                border-bottom: 1px solid var(--border-color);
+            }}
+            th {{
+                background-color: #0f172a;
+                color: var(--text-secondary);
+                font-weight: 600;
+                position: sticky;
+                top: 0;
+            }}
+            tr:last-child td {{ border-bottom: none; }}
+            tr:hover {{ background-color: rgba(255,255,255,0.02); }}
+            
+            /* Badges */
+            .badge {{
+                padding: 2px 8px;
+                border-radius: 9999px;
+                font-size: 0.75rem;
+                font-weight: 600;
+            }}
+            .badge-INFO {{ background-color: rgba(59, 130, 246, 0.1); color: var(--accent); }}
+            .badge-WARNING {{ background-color: rgba(234, 179, 8, 0.1); color: var(--warning); }}
+            .badge-ERROR {{ background-color: rgba(239, 68, 68, 0.1); color: var(--error); }}
+            
+            .timestamp {{ color: var(--text-secondary); white-space: nowrap; font-family: monospace; }}
+            .source {{ font-weight: 500; color: #e2e8f0; }}
+            .event {{ color: var(--text-secondary); }}
+            .context {{ 
+                font-family: monospace; 
+                color: var(--text-secondary); 
+                font-size: 0.75rem; 
+                max-width: 300px; 
+                overflow: hidden; 
+                text-overflow: ellipsis; 
+                white-space: nowrap;
+            }}
+            .context:hover {{
+                white-space: pre-wrap;
+                max-width: none;
+                word-break: break-all;
+            }}
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <div>
+                    <h1>System Logs</h1>
+                    <div style="color: var(--text-secondary); font-size: 0.875rem; margin-top: 4px;">
+                        Showing latest {len(logs)} entries from <strong>{engine.url.database}</strong>
+                    </div>
+                </div>
+                <a href="/logs?limit={limit}" class="refresh-btn">🔄 Refresh</a>
+            </header>
+            
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="180">Timestamp</th>
+                            <th width="80">Level</th>
+                            <th width="120">Source</th>
+                            <th width="120">Event</th>
+                            <th>Message</th>
+                            <th width="250">Context</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    """
+    
+    for log in logs:
+        # Parse row
+        # Row structure depends on DB driver, usually tuple or object
+        # system_logs columns: id, timestamp, level, source, event, message, context
+        
+        # Handle different result types (tuple vs mapping)
+        try:
+            ts = log.timestamp.strftime("%Y-%m-%d %H:%M:%S")
+            lvl = log.level
+            src = log.source
+            evt = log.event
+            msg = log.message
+            ctx = json.dumps(log.context) if log.context else ""
+        except:
+            # Fallback for tuple access if object access fails
+            ts = str(log[1])
+            lvl = log[2]
+            src = log[3]
+            evt = log[4]
+            msg = log[5]
+            ctx = str(log[6]) if log[6] else ""
+
+        html_content += f"""
+                        <tr>
+                            <td class="timestamp">{ts}</td>
+                            <td><span class="badge badge-{lvl}">{lvl}</span></td>
+                            <td class="source">{src}</td>
+                            <td class="event">{evt}</td>
+                            <td>{msg}</td>
+                            <td class="context" title='{ctx}'>{ctx}</td>
+                        </tr>
+        """
+
+    html_content += """
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+    </html>
+    """
+    return html_content
+
 @app.on_event("startup")
 def startup_event():
     # Initialize DB Connection on startup
@@ -1400,6 +1628,8 @@ def startup_event():
     target_engine = engines.get("neon") or engines.get("local")
     if target_engine:
         init_logging_db(target_engine)
+        
+    log_message("🚀 Server Started! Access it here: http://localhost:8000")
 
 @app.get("/")
 def read_root():
@@ -1417,7 +1647,7 @@ def seed_indices_endpoint():
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/seed/stocks/full-refresh")
-def seed_stocks_full_refresh(background_tasks: BackgroundTasks):
+def seed_stocks_full_refresh(background_tasks: BackgroundTasks, createJSONFiles: bool = True):
     """
     Runs the full pipeline:
     1. Fetch NSE CSV (Cell 3)
@@ -1428,15 +1658,26 @@ def seed_stocks_full_refresh(background_tasks: BackgroundTasks):
     6. Seed DB (Cell 8)
     """
     def full_pipeline():
-        run_cell_3()
-        run_cell_4()
-        run_cell_5()
-        run_cell_6()
-        run_cell_7()
-        run_cell_8()
+        # 1. Master Skeleton
+        master_list = run_cell_3(create_json_files=createJSONFiles)
+        
+        # 2. Indices List (Independent)
+        indices_list = run_cell_4(create_json_files=createJSONFiles)
+        
+        # 3. Indices Details (Concurrent)
+        indices_data = run_cell_5(create_json_files=createJSONFiles, input_data=indices_list)
+        
+        # 4. Enrich Master with Indices (In-Memory)
+        master_list = run_cell_6(create_json_files=createJSONFiles, input_data=master_list, indices_data=indices_data)
+        
+        # 5. Token Hunt (In-Memory)
+        master_list = run_cell_7(create_json_files=createJSONFiles, input_data=master_list)
+        
+        # 6. Seed DB (In-Memory)
+        run_cell_8(create_json_files=createJSONFiles, input_data=master_list)
     
     background_tasks.add_task(full_pipeline)
-    return {"status": "accepted", "message": "Full refresh started in background"}
+    return {"status": "accepted", "message": f"Full refresh started (createJSONFiles={createJSONFiles})"}
 
 @app.post("/seed/stocks/quick-update")
 def seed_stocks_quick_update(background_tasks: BackgroundTasks):
