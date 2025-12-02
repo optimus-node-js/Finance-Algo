@@ -10,3 +10,4 @@ smartapi-python
 tqdm
 logzero
 websocket-client
+python-dotenv
