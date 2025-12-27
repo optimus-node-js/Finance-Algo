@@ -15,10 +15,14 @@ def startup_event():
     # Initialize DB Connection on startup
     engines = get_db_engines()
     
-    # Initialize Logging DB (Neon preferred)
-    target_engine = engines.get("neon") or engines.get("local")
-    if target_engine:
-        init_logging_db(target_engine)
+    # Initialize Logging DB (Both Local and Neon)
+    for name, engine in engines.items():
+        if engine:
+            try:
+                init_logging_db(engine)
+                log_message(f"✅ [{name.upper()}] Logging Table Verified.")
+            except Exception as e:
+                log_message(f"⚠️ [{name.upper()}] Failed to init logging table: {e}")
         
     log_message("🚀 Server Started! Access it here: http://localhost:8000")
 

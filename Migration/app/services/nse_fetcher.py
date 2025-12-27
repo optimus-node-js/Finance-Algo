@@ -21,7 +21,11 @@ def fetch_nse_equity_list(create_json_files=True):
     """
     Fetches the official NSE Equity List (CSV) and builds the master skeleton.
     """
-    NSE_CSV_URL = "https://nsearchives.nseindia.com/content/equities/EQUITY_L.csv"
+    NSE_CSV_URLS = [
+        "https://archives.nseindia.com/content/equities/EQUITY_L.csv",
+        "https://nsearchives.nseindia.com/content/equities/EQUITY_L.csv",
+        "https://www.nseindia.com/content/equities/EQUITY_L.csv"
+    ]
     OUTPUT_FILE = os.path.join(settings.DATA_DIR, 'NSE_STOCKS_SKELETON.json')
 
     if not os.path.exists(settings.DATA_DIR):
@@ -35,21 +39,25 @@ def fetch_nse_equity_list(create_json_files=True):
 
     def fetch_csv():
         log_message(f"📥 Downloading NSE Equity CSV...")
-        try:
-            response = requests.get(NSE_CSV_URL, headers=HEADERS, timeout=15)
-            if response.status_code == 200:
-                raw_text = response.content.decode('utf-8')
-                csv_content = io.StringIO(raw_text)
-                df = pd.read_csv(csv_content, keep_default_na=False)
-                df.columns = [c.strip() for c in df.columns]
-                log_message(f"✅ Pandas Parsed Rows: {len(df)}")
-                return df
-            else:
-                log_message(f"❌ Failed to download. Status Code: {response.status_code}")
-                return None
-        except Exception as e:
-            log_message(f"❌ Exception during download: {e}")
-            return None
+        
+        for url in NSE_CSV_URLS:
+            log_message(f"🌐 Trying URL: {url}")
+            try:
+                response = requests.get(url, headers=HEADERS, timeout=15)
+                if response.status_code == 200:
+                    raw_text = response.content.decode('utf-8')
+                    csv_content = io.StringIO(raw_text)
+                    df = pd.read_csv(csv_content, keep_default_na=False)
+                    df.columns = [c.strip() for c in df.columns]
+                    log_message(f"✅ Downloaded & Parsed Rows: {len(df)}")
+                    return df
+                else:
+                    log_message(f"❌ Failed {url}. Status: {response.status_code}")
+            except Exception as e:
+                log_message(f"❌ Exception {url}: {e}")
+        
+        log_message("❌ All NSE CSV URLs failed.")
+        return None
 
     def build_skeleton(df):
         master_list = []
