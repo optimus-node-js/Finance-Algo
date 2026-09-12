@@ -7,8 +7,7 @@ import io
 import pandas as pd
 import concurrent.futures
 from tqdm import tqdm
-from sqlalchemy import MetaData, Table, Column, Integer, String, Float, Boolean, text
-from sqlalchemy.dialects.postgresql import insert
+from sqlalchemy import text
 
 from app.core.config import settings
 from app.core.logging import log_message
@@ -167,85 +166,45 @@ def fetch_nse_indices_list(create_json_files=True):
     URL_HOME = "https://www.nseindia.com"
     URL_API = "https://www.nseindia.com/api/allIndices"
 
-    def define_indices_schema(metadata):
-        return Table(
-            'indices', metadata,
-            Column('id', Integer, primary_key=True, autoincrement=True),
-            Column('name', String, unique=True, nullable=False),
-            Column('key', String),
-            Column('index_symbol', String),
-            Column('is_fno_eligible', Boolean),
-            Column('last_price', Float),
-            Column('percent_change', Float),
-            Column('previous_close', Float),
-            Column('open_price', Float),
-            Column('high_price', Float),
-            Column('low_price', Float),
-            Column('year_high', Float),
-            Column('year_low', Float),
-            Column('pe_ratio', String),
-            Column('pb_ratio', String),
-            Column('div_yield', String),
-            Column('raw_meta', String)
-        )
-
     def save_to_postgres(data_list):
+        """Upserts into the REAL `indices` table from sql/schema.sql
+        (id, name, token, exchange_id, category, source_url). Deliberately
+        does NOT drop/recreate the table -- that used to run an incompatible
+        ad-hoc shape (key/index_symbol/last_price/...) and CASCADE-drop
+        index_constituents along with it every time this ran."""
         engines = get_db_engines()
         success_count = 0
-        
+
         for name, engine in engines.items():
             if engine is None: continue
             try:
                 with engine.begin() as conn:
-                    conn.execute(text("DROP TABLE IF EXISTS indices CASCADE"))
-                
-                metadata = MetaData()
-                indices_table = define_indices_schema(metadata)
-                metadata.create_all(engine)
-                
-                records_batch = []
-                for item in data_list:
-                    record = {
-                        "name": item.get("index", "").strip(),
-                        "key": item.get("key", ""),
-                        "index_symbol": item.get("indexSymbol", ""),
-                        "is_fno_eligible": item.get("isDerivativesEligible", False),
-                        "last_price": item.get("last"),
-                        "percent_change": item.get("percentChange"),
-                        "previous_close": item.get("previousClose"),
-                        "open_price": item.get("open"),
-                        "high_price": item.get("high"),
-                        "low_price": item.get("low"),
-                        "year_high": item.get("yearHigh"),
-                        "year_low": item.get("yearLow"),
-                        "pe_ratio": str(item.get("Price-to-Earnings-ratio", "")),
-                        "pb_ratio": str(item.get("Price-to-Book-ratio", "")),
-                        "div_yield": str(item.get("Dividend-Yield", "")),
-                        "raw_meta": json.dumps(item)
-                    }
-                    records_batch.append(record)
+                    conn.execute(text(
+                        "INSERT INTO exchanges (code, name, currency, timezone) "
+                        "VALUES ('NSE', 'National Stock Exchange', 'INR', 'Asia/Kolkata') "
+                        "ON CONFLICT (code) DO NOTHING"
+                    ))
+                    exchange_id = conn.execute(text("SELECT id FROM exchanges WHERE code = 'NSE'")).scalar()
 
-                log_message(f"🗄️  [{name.upper()}] Schema Reset. Starting Bulk Upsert...")
-                
-                with engine.begin() as conn:
-                    if records_batch:
-                        stmt = insert(indices_table).values(records_batch)
-                        update_stmt = stmt.on_conflict_do_update(
-                            index_elements=['name'],
-                            set_={
-                                "key": stmt.excluded.key,
-                                "last_price": stmt.excluded.last_price,
-                                "percent_change": stmt.excluded.percent_change,
-                                "raw_meta": stmt.excluded.raw_meta,
-                                "is_fno_eligible": stmt.excluded.is_fno_eligible
-                            }
-                        )
-                        conn.execute(update_stmt)
-                log_message(f"✅ [{name.upper()}] Update Complete: {len(data_list)} records.")
+                    for item in data_list:
+                        index_name = item.get("index", "").strip()
+                        if not index_name:
+                            continue
+                        conn.execute(text(
+                            "INSERT INTO indices (name, exchange_id, category, source_url) "
+                            "VALUES (:name, :exchange_id, :category, :source_url) "
+                            "ON CONFLICT (name) DO UPDATE SET category = EXCLUDED.category"
+                        ), {
+                            "name": index_name,
+                            "exchange_id": exchange_id,
+                            "category": (item.get("key") or "")[:50],
+                            "source_url": "https://www.nseindia.com/api/allIndices",
+                        })
+                log_message(f"[{name.upper()}] indices table upserted: {len(data_list)} records.")
                 success_count += 1
             except Exception as e:
-                log_message(f"❌ [{name.upper()}] Database Error: {str(e)}")
-        
+                log_message(f"[{name.upper()}] Database Error: {str(e)}")
+
         return success_count > 0
 
     def fetch_manual():
@@ -296,7 +255,44 @@ def fetch_nse_indices_list(create_json_files=True):
         return []
 
 # ==========================================
-# 3. FETCH NSE INDICES DETAILS (Cell 5)
+# 3b. SECTOR CLASSIFICATION (static archive CSVs -- replaces Cell 5)
+# ==========================================
+def fetch_sector_classification() -> dict:
+    """
+    NSE's dynamic site (www.nseindia.com, used by fetch_nse_indices_details
+    below) actively blocks non-browser requests -- confirmed live, HTTP 403
+    on the homepage itself, so that per-index detail fetch can never succeed
+    as written. archives.nseindia.com serves static CSV files and is NOT
+    behind that protection (verified live, 200 OK) -- these are the official
+    per-index constituent lists NSE itself publishes, with an Industry column.
+    Covers ~750 (Nifty Total Market) + ~250 (microcap) of the largest/most
+    liquid names -- not the full universe, but the ones that matter most for
+    scanning. The rest stay NULL, same forward-compatible pattern used
+    elsewhere (e.g. /market/instruments/search).
+    """
+    urls = [
+        "https://archives.nseindia.com/content/indices/ind_niftytotalmarket_list.csv",
+        "https://archives.nseindia.com/content/indices/ind_niftymicrocap250_list.csv",
+    ]
+    sector_map = {}
+    for url in urls:
+        try:
+            resp = requests.get(url, headers={"User-Agent": "Mozilla/5.0"}, timeout=15)
+            resp.raise_for_status()
+            df = pd.read_csv(io.StringIO(resp.content.decode("utf-8")))
+            sector_map.update(dict(zip(df["Symbol"], df["Industry"])))
+            log_message(f"Sector classification: {len(df)} rows from {url}")
+        except Exception as e:
+            log_message(f"Sector classification fetch failed for {url}: {e}")
+    return sector_map
+
+
+# ==========================================
+# 3. FETCH NSE INDICES DETAILS (Cell 5) -- DEPRECATED, kept for reference.
+# NSE's dynamic site blocks non-browser requests (confirmed live, 403 on the
+# homepage session-init this depends on). Not called from the seed pipeline
+# anymore -- see fetch_sector_classification() above for the working
+# static-CSV replacement. Left in place in case NSE's protection changes.
 # ==========================================
 def fetch_nse_indices_details(create_json_files=True, input_data=None):
     """

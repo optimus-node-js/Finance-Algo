@@ -27,8 +27,19 @@ class Settings:
     
     # Database - Neon
     NEON_DB_URL = os.getenv("NEON_DB_URL", "")
+
+    # Database - Supabase
+    SUPABASE_DB_URL = os.getenv("SUPABASE_DB_URL", "")
     
     # Angel One
     ANGEL_COOKIE = os.getenv("ANGEL_COOKIE", "")
-    
+
+    # Paper trading / strategy defaults (override via .env if needed)
+    CAPITAL_PER_TRADE = float(os.getenv("CAPITAL_PER_TRADE", "20000"))
+    MAX_TRADES_PER_DAY = int(os.getenv("MAX_TRADES_PER_DAY", "3"))
+    MIN_GAP_PERCENT = float(os.getenv("MIN_GAP_PERCENT", "1.5"))
+    VOL_SHOCK_MULT = float(os.getenv("VOL_SHOCK_MULT", "3.0"))
+    SCAN_INTERVAL_SEC = int(os.getenv("SCAN_INTERVAL_SEC", "15"))
+    SQUARE_OFF_TIME = os.getenv("SQUARE_OFF_TIME", "15:15")
+
 settings = Settings()

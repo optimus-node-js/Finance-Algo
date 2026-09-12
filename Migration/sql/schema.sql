@@ -29,11 +29,13 @@ CREATE TABLE sectors (
 );
 
 -- =============================================
--- 2. THE GOLDEN STOCK TABLE (Stocks)
+-- 2. THE GOLDEN STOCK TABLE (Instruments)
 -- =============================================
 
 -- This replaces your JSON file. Stores EVERYTHING about a stock.
-CREATE TABLE stocks (
+-- NOTE (fixed 2026-07-23): originally named "stocks" while every FK/index below
+-- referenced "instruments" — the schema would not have run. Renamed to match.
+CREATE TABLE instruments (
     token VARCHAR(50) PRIMARY KEY, -- Angel One Token ID (e.g., '3045')
     symbol VARCHAR(50) NOT NULL, -- 'RELIANCE-EQ'
     trading_symbol VARCHAR(50), -- 'RELIANCE' (Clean symbol)
@@ -41,7 +43,7 @@ CREATE TABLE stocks (
     exchange_id INT REFERENCES exchanges(id),
     asset_class_id INT REFERENCES asset_classes(id),
     sector_id INT REFERENCES sectors(id),
-    
+
     -- Detailed Info from Angel One API / 5Paisa
     isin VARCHAR(20), -- Critical for mapping
     scrip_type VARCHAR(50), -- 'nseCash', 'bseCash'
@@ -51,7 +53,7 @@ CREATE TABLE stocks (
     lot_size INT DEFAULT 1,
     tick_size NUMERIC(10, 4) DEFAULT 0.05,
     is_cash_with_fno BOOLEAN DEFAULT FALSE, -- Available in F&O?
-    
+
     -- Status
     is_active BOOLEAN DEFAULT TRUE,
     last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -180,11 +182,11 @@ CREATE TABLE trade_signals (
     strategy_name VARCHAR(100), -- 'GapVolShock_v1'
     signal_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     signal_price NUMERIC(10, 2),
-    
+
     -- Detailed Technicals at Signal Time (JSON for flexibility)
-    technical_data JSONB, 
+    technical_data JSONB,
     -- Example: {"gap_pct": 1.5, "vol_mult": 3.2, "vwap": 1200, "rsi": 65}
-    
+
     is_processed BOOLEAN DEFAULT FALSE -- Has the bot placed an order for this?
 );
 
@@ -192,20 +194,25 @@ CREATE TABLE trade_signals (
 CREATE TABLE orders (
     order_id BIGSERIAL PRIMARY KEY,
     signal_id BIGINT REFERENCES trade_signals(id),
-    broker_order_id VARCHAR(100), -- Angel One Order ID
+    broker_order_id VARCHAR(100), -- Angel One Order ID (NULL for paper orders)
     instrument_token VARCHAR(50) REFERENCES instruments(token),
-    
+
+    -- NOTE (added 2026-07-23): explicit paper/live flag. Everything defaults to
+    -- paper so a bug can never silently place a real order. Flip only per-order,
+    -- deliberately, once we're ready to go live.
+    is_paper BOOLEAN NOT NULL DEFAULT TRUE,
+
     transaction_type VARCHAR(10), -- 'BUY', 'SELL'
     order_type VARCHAR(20), -- 'MARKET', 'LIMIT', 'SL'
     product_type VARCHAR(20), -- 'INTRADAY', 'DELIVERY'
-    
+
     quantity INT NOT NULL,
     price_requested NUMERIC(10, 2), -- Limit Price (if any)
     trigger_price NUMERIC(10, 2), -- SL Trigger (if any)
-    
+
     status VARCHAR(20), -- 'PENDING', 'EXECUTED', 'REJECTED', 'CANCELLED'
     status_message TEXT, -- Error message from Broker
-    
+
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -215,14 +222,14 @@ CREATE TABLE trades (
     trade_id BIGSERIAL PRIMARY KEY,
     order_id BIGINT REFERENCES orders(order_id),
     instrument_token VARCHAR(50) REFERENCES instruments(token),
-    
+
     execution_price NUMERIC(10, 2),
     execution_time TIMESTAMP,
     quantity_filled INT,
-    
+
     -- Metrics
     slippage NUMERIC(10, 2), -- (Execution Price - Signal Price)
-    
+
     -- Cost Breakdown
     brokerage NUMERIC(10, 2) DEFAULT 0,
     stt NUMERIC(10, 2) DEFAULT 0,
@@ -234,19 +241,23 @@ CREATE TABLE trades (
 );
 
 -- Portfolio Ledger (Daily P&L Tracking)
+-- NOTE (changed 2026-07-23): added `mode` so paper and live P&L never mix in
+-- the same balance, and the uniqueness constraint is now (date, mode).
 CREATE TABLE portfolio_ledger (
     id SERIAL PRIMARY KEY,
-    date DATE UNIQUE NOT NULL,
+    date DATE NOT NULL,
+    mode VARCHAR(10) NOT NULL DEFAULT 'PAPER' CHECK (mode IN ('PAPER', 'LIVE')),
     opening_balance NUMERIC(15, 2),
     closing_balance NUMERIC(15, 2),
-    
+
     total_gross_pnl NUMERIC(15, 2),
     total_charges_paid NUMERIC(15, 2),
     net_pnl NUMERIC(15, 2),
     roi_percentage NUMERIC(5, 2),
-    
+
     trades_count INT,
-    win_rate NUMERIC(5, 2)
+    win_rate NUMERIC(5, 2),
+    UNIQUE(date, mode)
 );
 
 -- =============================================

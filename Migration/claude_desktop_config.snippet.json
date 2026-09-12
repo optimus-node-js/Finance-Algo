@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "angel-one": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "angel-one-mcp"],
+      "env": {
+        "ANGEL_API_KEY": "***REDACTED***",
+        "ANGEL_CLIENT_ID": "***REDACTED***",
+        "ANGEL_PASSWORD": "***REDACTED***",
+        "ANGEL_TOTP_SECRET": "***REDACTED***"
+      }
+    }
+  }
+}

@@ -3,7 +3,9 @@
     "version": "1.0.0",
     "description": "FastAPI Migration Server",
     "scripts": {
-        "dev": "python -m uvicorn fastapi_app:app --reload",
+        "dev": "python -m uvicorn app.main:app --reload",
+        "start": "python -m uvicorn app.main:app",
+        "install": "pip install -r requirements.txt",
         "setup": "pip install uvicorn fastapi"
     }
 }

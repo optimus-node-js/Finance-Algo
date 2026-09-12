@@ -13,3 +13,4 @@ websocket-client
 python-dotenv
 py_vollib
 scipy
+apscheduler

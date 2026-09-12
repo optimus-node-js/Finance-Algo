@@ -25,7 +25,10 @@ def log_message(msg, console=True):
 
     # 2. Print to Console
     if console:
-        print(formatted_msg)
+        try:
+            print(formatted_msg)
+        except UnicodeEncodeError:
+            print(formatted_msg.encode("ascii", "replace").decode("ascii"))
 
 def init_logging_db(engine):
     """Creates the system_logs table if it doesn't exist."""

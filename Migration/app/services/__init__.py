@@ -1,3 +1,3 @@
-from .nse_fetcher import fetch_nse_equity_list, fetch_nse_indices_list, fetch_nse_indices_details
+from .nse_fetcher import fetch_nse_equity_list, fetch_nse_indices_list, fetch_nse_indices_details, fetch_sector_classification
 from .enrichment import enrich_stocks_from_indices, enrich_stocks_with_tokens
 from .seeder import seed_stocks_database

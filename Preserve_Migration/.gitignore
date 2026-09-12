@@ -1,0 +1,45 @@
+# Vercel
+.vercel
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Environment variables (IMPORTANT: Contains sensitive credentials)
+.env
+
+# Generated data and logs
+logs/
+data/
+*.log
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+
+# Temporary files
+*.tmp
+*.bak
+*.cache
