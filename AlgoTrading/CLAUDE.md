@@ -5,6 +5,13 @@ what's built, what's verified, and what's left. Written 2026-07-23 by a Cowork
 session that built the backend but could not run it live (see "Network" below) —
 that's now your job, since you're running with real internet on Tadka's machine.
 
+**Updated 2026-09-13** after a live session on Tadka's machine: Angel One auth,
+NSE seeding, and Neon+Supabase are now all confirmed working end-to-end (see
+"What's DONE and verified" and "Cloud container quick-start" below). `.env`
+(with real credentials) is committed to git on Tadka's explicit instruction —
+he plans to revoke/rotate everything later. Treat every credential in this
+repo's `.env` files as already-committed, not secret.
+
 ## Goal
 
 An automated algo-trading platform for Indian equities (NSE) on Angel One
@@ -27,7 +34,7 @@ Finance Server/
 │       │   │   ├── config.py           reads .env into a Settings object
 │       │   │   └── logging.py          (pre-existing) DB-backed logging helpers
 │       │   ├── db/
-│       │   │   └── session.py          SQLAlchemy engines (local + Neon) +
+│       │   │   └── session.py          SQLAlchemy engines (local + Neon + Supabase) +
 │       │   │                           get_raw_connection() for psycopg2 cursors
 │       │   ├── routers/
 │       │   │   ├── seed.py, clean.py, logs.py     (pre-existing, NSE data seeding)
@@ -50,28 +57,30 @@ Finance Server/
 │   ├── Stocks/main.ipynb       original research notebook: Gap+VolShock strategy, backtest, live engine draft
 │   ├── Stocks/data/            nifty500.json (token map), backtest_results.csv, real_trade_ledger.csv, etc.
 │   └── Options/                separate options-trading research (Greeks, risk manager) — not wired into AlgoBackend yet
-└── Migration/                  SUPERSEDED — this is the old location before the AlgoTrading/AlgoBackend
-                                 restructure. Same files exist there too (not deleted, Claude can't delete files
-                                 on this machine). Ignore it; work only in AlgoBackend. Tadka can delete
-                                 Migration/ manually once he's confirmed AlgoBackend works.
+└── Migration/                  SUPERSEDED as the working location, but as of 2026-09-13 its code has
+                                 been re-synced to mirror AlgoBackend (same app/, sql/schema.sql,
+                                 requirements.txt — its own .env/data/logs are untouched). Still: work
+                                 only in AlgoBackend going forward. Tadka can delete Migration/ once
+                                 he's fully confirmed AlgoBackend works.
 ```
 
-## How to run it
+## How to run it (local, with a local Postgres)
 
 ```bash
 cd "Finance Server/AlgoTrading/AlgoBackend"
-pip install -r requirements.txt
+python -m venv .venv && ./.venv/Scripts/pip install -r requirements.txt   # Windows
 
 # one-time: create the DB and load the schema
 createdb algotrading      # or use LOCAL_DB_NAME from .env if different
 psql -U postgres -d algotrading -f sql/schema.sql
 
-# one-time: seed the instrument universe (offline, no network needed - uses the
-# token map already in Trading/Stocks/data/)
-python scripts/seed_instruments.py "../../Trading/Stocks/data/nifty500.json"
-
 # start the backend
-uvicorn app.main:app --reload --port 8000
+PYTHONIOENCODING=utf-8 PYTHONUTF8=1 uvicorn app.main:app --reload --port 8000
+# PYTHONIOENCODING=utf-8 is required on Windows -- log_message() prints emoji
+# and the default cp1252 console encoding crashes on them otherwise.
+
+# seed the full NSE stock/index universe (network, ~2-5 min)
+curl -X POST http://localhost:8000/seed/stocks/full-refresh
 ```
 
 Then, during NSE market hours (9:15–15:30 IST):
@@ -84,8 +93,32 @@ POST http://localhost:8000/trading/scanner/stop
 ```
 
 `.env` already has real Angel One credentials (5-key rotation pool, client
-code ***REDACTED***) and DB config (`LOCAL_DB_*`, `NEON_DB_URL`). Nothing else to
-fill in to do a first run.
+code ***REDACTED***) and DB config (`LOCAL_DB_*`, `NEON_DB_URL`, `SUPABASE_DB_URL`).
+Nothing else to fill in to do a first run.
+
+## Cloud container quick-start (no local Postgres needed)
+
+A fresh cloud container has no local Postgres, but `.env` is committed to git
+(Tadka's explicit call — see the note at the top of this file) with working
+`NEON_DB_URL` and `SUPABASE_DB_URL`, so the app runs immediately against those
+two without any local DB setup:
+
+```bash
+cd "Finance Server/AlgoTrading/AlgoBackend"   # or Migration/, same code
+python -m venv .venv && ./.venv/Scripts/pip install -r requirements.txt
+PYTHONIOENCODING=utf-8 PYTHONUTF8=1 uvicorn app.main:app --reload --port 8000
+```
+
+`get_db_engines()` in `app/db/session.py` tries local/Neon/Supabase
+independently and just logs+skips whichever fails to connect (a missing local
+Postgres in the container will show `[LOCAL] Connection Failed` in the startup
+log — that's expected and harmless, Neon+Supabase still connect fine). Every
+`/seed/*` endpoint and `seeder.py`/`nse_fetcher.py` loop over all connected
+engines generically, so hitting `/seed/stocks/full-refresh` seeds whichever of
+local/Neon/Supabase are reachable — no per-DB code changes needed either way.
+Neon and Supabase already have the current schema applied (as of 2026-09-13:
+2,305 instruments, 139 indices in both, plus local `algotrading`) — no
+`psql -f sql/schema.sql` step needed unless the schema itself changes.
 
 ## What's DONE and verified
 
@@ -114,22 +147,52 @@ fill in to do a first run.
   responded correctly against real Postgres.
 - Fixed capital sizing only (`CAPITAL_PER_TRADE`, default ₹20,000) — deliberately
   NOT compounding, NOT leveraged. See "Backtest validation" below for why.
+- **(2026-09-13, live-verified)** Angel One login works for real: `GET
+  /account/profile` returns a live profile for client ***REDACTED*** using key 1's
+  rotation pool. Keys 2-5 log in fine but fail with AG8004 on data/account
+  calls — Angel One only allows 1 registered app per public IP, and only key 1
+  is registered under that static-IP app. Re-enabling keys 2-5 needs separate
+  public IPs (see comments in `.env`).
+- **(2026-09-13, live-verified)** `/seed/stocks/full-refresh` runs clean
+  end-to-end: 2,568 NSE mainboard equities fetched from
+  `archives.nseindia.com/content/equities/EQUITY_L.csv` (static, unauthenticated,
+  never blocked — unlike `www.nseindia.com`'s dynamic API, which 403s
+  non-browser requests, confirmed live), sector data for ~1,000 of them from two
+  more static NSE archive CSVs, and Angel One's public
+  `OpenAPIScripMaster.json` (no auth, no rate limit) matched tokens for
+  2,305/2,568 — seeded into `instruments`/`indices` in local, Neon, AND
+  Supabase identically (2,305 instruments / 139 indices in each, verified by
+  direct query). `index_constituents` links are still 0 everywhere — nothing
+  in the current pipeline populates that table yet (open item).
+- **(2026-09-13)** Third DB target added: **Supabase**, via `SUPABASE_DB_URL`
+  in `.env` and a `supabase` engine in `app/db/session.py` alongside
+  local/Neon. All seed/fetch code loops over `engines.items()` generically, so
+  this needed no changes to `seeder.py`/`nse_fetcher.py` — just the new engine.
+- **(2026-09-13)** Fixed a real bug in `nse_fetcher.py`'s (unused, dead-code)
+  `fetch_nse_indices_details`: it cold-started a brand new NSE session instead
+  of reusing one — harmless now since the seed pipeline doesn't call it (see
+  `fetch_sector_classification` instead), fixed anyway via a shared, retrying
+  `_warm_nse_session()` helper, in case it's revived later.
 
 ## What's NOT verified (do this first)
 
-Nothing that requires live internet has been tested — the Cowork cloud sandbox
-that built this could only reach pypi.org/github.com (verified against 8+
-domains including Angel One, NSE, Supabase — all blocked by its proxy). You're
-running with real internet now, so this is the actual first live test:
+Angel One login and NSE seeding are now confirmed live (see above). Still
+untested:
 
-1. Does `AngelSessionPool.login_all()` actually authenticate with real Angel One
-   credentials? (`app/services/angel_auth.py`)
-2. Does `getMarketData(mode="FULL", ...)` return the fields `market_data.py`
+1. Does `getMarketData(mode="FULL", ...)` return the fields `market_data.py`
    assumes (`ltp`, `open`, `close`, `tradeVolume`, `symbolToken`)? These were
    inferred from Angel One's docs/forum, not a live sample response — check the
    actual JSON shape and adjust `Quote` parsing in `market_data.py` if field
    names differ.
-3. Whole scan→signal→paper-trade→square-off loop under real market data timing.
+2. Whole scan→signal→paper-trade→square-off loop under real market data timing.
+3. **NSE SME/Emerge platform + BSE are not covered by the current stock
+   universe at all.** `EQUITY_L.csv` only covers NSE mainboard (2,568 of NSE's
+   ~2,867-2,978 total incl. SME). The obvious static-file candidate for SME
+   (`archives.nseindia.com/content/equities/SME_EQUITY_L.csv`) was checked live
+   2026-09-13 and is a stale placeholder stub, not real data — a truthful SME
+   source is still unsolved. BSE (~5,900 listed companies, an entirely
+   separate universe from NSE) hasn't been investigated at all yet. Both are
+   open items for the "keep the stock table current via cron" task.
 
 Run `POST /trading/scanner/start` during market hours and work through whatever
 breaks. That's expected — iterate on `market_data.py` / `angel_auth.py` as
@@ -157,8 +220,11 @@ the mistake, not a missing feature.
 
 ## Decisions already made (don't re-litigate without reason)
 
-- DB: Supabase (free tier) planned for hosted/production; local Postgres for
-  now. Neon is also already configured in `.env` as an alternative.
+- DB: **Supabase is now live** (as of 2026-09-13), not just planned — seeded
+  and verified alongside local Postgres and Neon (all 3 kept in sync by the
+  seed pipeline). Local Postgres remains fine for day-to-day local dev; Neon
+  and Supabase are both real, reachable cloud targets already, useful
+  specifically for a cloud container that has no local Postgres.
 - Hosting: Oracle Cloud "Always Free" ARM VM, planned for LATER — not now.
   Priority order is: backend solid locally → deploy → Claude command interface
   → Expo app. Don't jump ahead to deployment or the app before the backend
