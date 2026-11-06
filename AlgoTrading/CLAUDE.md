@@ -7,10 +7,8 @@ that's now your job, since you're running with real internet on Tadka's machine.
 
 **Updated 2026-09-13** after a live session on Tadka's machine: Angel One auth,
 NSE seeding, and Neon+Supabase are now all confirmed working end-to-end (see
-"What's DONE and verified" and "Cloud container quick-start" below). `.env`
-(with real credentials) is committed to git on Tadka's explicit instruction —
-he plans to revoke/rotate everything later. Treat every credential in this
-repo's `.env` files as already-committed, not secret.
+"What's DONE and verified" and "Cloud container quick-start" below). `.env` files are
+**not** committed — copy `.env.example` and supply your own credentials.
 
 ## Goal
 
